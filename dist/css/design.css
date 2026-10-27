@@ -276,3 +276,121 @@ body[data-page=home] #site-footer{margin-top:0}
 @media(max-width:480px){.about-copy h1{font-size:31px}.about-photo img{height:350px}}
 
 @media(max-width:760px){.home-about{padding-top:40px;padding-bottom:45px}}
+
+/* Institutional presence, using the Ecuador catalog's original map assets. */
+.presence-map{position:relative;max-width:440px;width:100%;margin:0 auto}
+.presence-map>img{display:block;width:100%;height:auto;mix-blend-mode:multiply}
+.presence-labels{position:absolute;inset:0;color:var(--blue);font-family:Poppins,Arial,sans-serif;font-weight:700;font-size:11px;line-height:1.25}
+.presence-label{position:absolute;white-space:nowrap;transform:translateY(-50%)}
+.presence-label--mexico{top:21.2%;left:24.5%}
+.presence-label--colombia{top:39.8%;left:54.7%}
+.presence-label--ecuador{top:45.3%;left:49.5%}
+.presence-label--venezuela{top:36%;left:63.7%}
+.presence-label--brasil{top:52.6%;left:78.1%}
+.presence-label--chile{top:71.9%;left:56.7%}
+.international-home{position:relative;background:var(--blue)}
+.international-home:before{content:"";position:absolute;inset:0 50% 0 0;background:#f6f7f8}
+.international-home .international-summary{position:relative;display:grid;grid-template-columns:1fr 1fr;padding-block:0}
+.international-summary-map{padding:35px 50px 35px 0;display:flex;align-items:center;min-height:540px}
+.international-summary-map .presence-map{max-width:390px}
+.international-summary-map .presence-labels{font-size:10px}
+.international-summary-copy{padding:55px 0 55px 60px;align-self:center}
+.international-summary-copy .international-eyebrow{font-family:Poppins,Arial,sans-serif;font-weight:700;font-size:10px;letter-spacing:.1em;margin:0 0 22px}
+.international-summary-copy h2{font-size:32px;line-height:1.28;letter-spacing:-.025em;margin-bottom:23px}
+.international-summary-copy p{font-size:14px;line-height:1.85;margin-bottom:20px;max-width:450px}
+.international-summary-copy .text-link{font-size:13px;margin-top:8px}
+.international-page-intro{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:75px;padding-top:40px;padding-bottom:70px}
+.international-page-map .presence-map{max-width:450px}
+.international-page-copy>.eyebrow{margin-bottom:15px}
+.international-page-copy h1{font-size:42px;margin-bottom:25px}
+.international-page-copy p{font-size:14px;line-height:1.95;color:var(--muted);margin-bottom:21px}
+.international-page-copy .international-lead{font-size:19px;line-height:1.7;color:var(--ink)}
+.international-presence{padding-block:52px 58px;background:#f5f5f5}
+.international-presence h2{font-size:28px;margin:0 0 30px}
+.country-presence-grid{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:27px 65px;margin:0;padding:0}
+.country-presence-grid li{display:flex;align-items:center;gap:23px;min-height:86px}
+.country-presence-grid img{width:58px;height:68px;object-fit:contain;flex-shrink:0}
+.country-presence-grid h3{font-size:19px;letter-spacing:-.015em;line-height:1.35;margin:0}
+.country-presence-grid p{font-size:11px;line-height:1.6;color:var(--muted);margin:8px 0 0}
+.country-presence-grid li[data-country=colombia] h3{color:var(--blue)}
+.international-colombia{background:var(--blue);color:#fff}
+.colombia-commercial{display:grid;grid-template-columns:1.65fr 1fr;gap:90px;padding-top:52px;padding-bottom:58px;align-items:center}
+.colombia-commercial h2{font-size:29px;margin-bottom:22px;color:#fff}
+.colombia-commercial p{font-size:14px;line-height:1.9;max-width:620px;color:#fff;margin-bottom:22px}
+.colombia-commercial a{color:#fff}
+.colombia-commercial a:focus-visible{outline-color:#fff}
+.colombia-commercial .text-link{text-decoration:underline;text-underline-offset:4px}
+.colombia-sales{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.colombia-sales>span{font-family:Poppins,Arial,sans-serif;font-size:12px;font-weight:700}
+.colombia-sales>a{font-size:15px;line-height:1.5;overflow-wrap:anywhere}
+body[data-page=about] #site-footer{margin-top:0}
+@media(max-width:1200px){
+  .international-summary-copy{padding-left:45px}
+  .international-summary-copy h2{font-size:29px}
+  .international-page-intro{gap:48px}
+  .international-page-copy h1{font-size:38px}
+  .country-presence-grid{column-gap:35px}
+  .colombia-commercial{gap:60px}
+}
+@media(max-width:960px){
+  .international-summary-map{padding-right:30px;min-height:530px}
+  .international-summary-copy{padding:40px 0 40px 30px}
+  .international-summary-copy h2{font-size:26px}
+  .international-summary-copy p{font-size:13px}
+  .presence-labels{font-size:10px}
+  .international-page-intro{gap:35px;grid-template-columns:1fr 1.15fr}
+  .international-page-copy h1{font-size:34px}
+  .international-page-copy .international-lead{font-size:17px}
+  .international-page-copy p{font-size:13px}
+  .country-presence-grid{gap:25px 25px}
+  .country-presence-grid li{gap:17px}
+  .country-presence-grid h3{font-size:17px}
+  .country-presence-grid img{width:48px;height:60px}
+  .colombia-commercial{gap:40px}
+}
+@media(max-width:760px){
+  .international-home:before{display:none}
+  .international-home .international-summary{width:100%;grid-template-columns:1fr}
+  .international-summary-map{background:#f6f7f8;padding:34px 20px;min-height:0}
+  .international-summary-map .presence-map{max-width:330px}
+  .international-summary-copy{padding:37px 20px 42px}
+  .international-summary-copy h2{font-size:29px;max-width:560px}
+  .international-summary-copy p{font-size:14px;max-width:580px}
+  .international-summary-copy .international-eyebrow{font-size:9px;margin-bottom:19px}
+  .international-page-intro{grid-template-columns:1fr;gap:20px;padding-top:32px;padding-bottom:43px}
+  .international-page-map{order:2;margin-top:5px}
+  .international-page-copy{order:1}
+  .international-page-map .presence-map{max-width:360px}
+  .international-page-copy h1{font-size:35px}
+  .international-page-copy .international-lead{font-size:18px}
+  .international-page-copy p{font-size:14px}
+  .international-presence{padding-block:40px 43px}
+  .international-presence h2{font-size:26px;margin-bottom:26px}
+  .country-presence-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 28px}
+  .country-presence-grid h3{font-size:17px}
+  .country-presence-grid img{width:50px;height:62px}
+  .colombia-commercial{grid-template-columns:1fr;gap:32px;padding-top:39px;padding-bottom:43px}
+  .colombia-commercial h2{font-size:27px}
+  .colombia-commercial p{font-size:13px;max-width:600px}
+  .colombia-sales{gap:16px}
+  .colombia-sales>a{font-size:14px}
+}
+@media(max-width:480px){
+  .international-summary-map{padding-top:25px;padding-bottom:25px}
+  .international-summary-map .presence-map{max-width:300px}
+  .international-summary-copy{padding:33px 18px 38px}
+  .international-summary-copy h2{font-size:27px}
+  .international-summary-copy p{font-size:13px}
+  .international-summary-map .presence-labels{font-size:9px}
+  .international-page-copy h1{font-size:32px}
+  .international-page-copy .international-lead{font-size:17px}
+  .international-page-copy p{font-size:13px}
+  .international-page-map .presence-map{max-width:325px}
+  .presence-labels{font-size:9px}
+  .country-presence-grid{gap:20px 18px}
+  .country-presence-grid li{gap:13px}
+  .country-presence-grid img{width:42px;height:56px}
+  .country-presence-grid h3{font-size:15px}
+  .country-presence-grid p{font-size:10px}
+  .international-presence h2{font-size:24px}
+}

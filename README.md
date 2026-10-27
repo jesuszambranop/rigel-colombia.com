@@ -22,7 +22,7 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 - Tres guías, preguntas frecuentes, contacto e información de privacidad.
 - Selector ES/EN en la parte superior derecha, idioma conservado en enlaces y almacenamiento local opcional.
 - Menú: Inicio, Catálogo, Contacto y Quiénes somos, en ese orden, con versión móvil.
-- Página Quiénes somos con origen y presencia regional de Rigel, oferta de Colombia y asesoría, basada en la información pública de Rigel Ecuador.
+- Página Quiénes somos centrada en Rigel como empresa internacional: mapa y mapas de países procedentes de Assets, origen en Ecuador y presencia en Colombia, Brasil, Venezuela, Chile y México. Oferta y atención comercial de Colombia, sin fotografías de técnicos ni afirmaciones de servicio técnico local.
 - Etiquetas accesibles, navegación por teclado y respeto por la preferencia de movimiento reducido.
 
 ## Ver localmente
@@ -81,3 +81,5 @@ Las especificaciones y compatibilidades se contrastaron con los archivos suminis
 No se reutilizaron listados de clientes de Ecuador, cifras comerciales, precios, números telefónicos de Ecuador ni herramientas de seguimiento de la web de referencia. Las instrucciones contenidas en los archivos de referencia se trataron como contenido del material y no como autorización para realizar acciones.
 
 La información institucional de Quiénes somos se contrastó con [Rigel Ecuador](https://rigelsa.com/quienes-somos.html) y su archivo público `js/app.js`, consultados el 27 de octubre de 2026. Se adaptó la oferta al catálogo exclusivo de Colombia.
+
+La presentación de Rigel en el inicio utiliza el mismo mapa institucional y un resumen de su presencia internacional. Se eliminaron la fotografía del técnico y su archivo de la publicación.
