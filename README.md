@@ -39,7 +39,7 @@ Verifica los cuatro productos, las parejas de compatibilidad, los textos biling�
 
 ## Publicar en GitHub Pages
 
-El repositorio previsto se llama **rigel-colombia.com**. La carpeta publicada es `dist/`.
+El repositorio es [jesuszambranop/rigel-colombia.com](https://github.com/jesuszambranop/rigel-colombia.com). La carpeta publicada es `dist/`.
 
 1. Subir este proyecto a la rama `main` del repositorio.
 2. En **Settings → Pages → Build and deployment**, elegir **GitHub Actions**.
@@ -61,7 +61,7 @@ La carpeta `.openai/` contiene la configuración de una vista alojada en Sites, 
 | `dist/css/styles.css` | Diseño y adaptación a móviles |
 | `dist/assets/` | Imágenes y documentos utilizados |
 
-El correo provisional es **support@rigelsa.com**, rotulado como canal de atención internacional porque no se suministró un correo exclusivo de Colombia. WhatsApp permanece sin configurar; al añadir un número confirmado en formato internacional, el enlace aparece automáticamente en contacto.
+El contacto comercial confirmado de Colombia es **colombia@rigelsa.com** y WhatsApp **+57 310 812 3039**. El enlace de WhatsApp utiliza el formato internacional `573108123039`.
 
 El formulario **prepara un correo** en el cliente de correo del visitante. No simula un envío, no tiene backend y no almacena los campos en un servidor. El visitante revisa y envía el mensaje. Para recepción automática será necesario integrar un servicio de formularios y revisar la información de privacidad.
 

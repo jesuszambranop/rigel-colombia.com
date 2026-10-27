@@ -1,6 +1,7 @@
 window.RIGEL_CONFIG = Object.freeze({
-  email: 'support@rigelsa.com',
+  email: 'colombia@rigelsa.com',
   // Use international digits only, e.g. 57XXXXXXXXXX. Null hides WhatsApp.
-  whatsapp: null,
+  whatsapp: '573108123039',
+  whatsappDisplay: '+57 310 812 3039',
   country: 'Colombia'
 });
