@@ -103,12 +103,12 @@
         <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2793" height="1204" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
         <div class="container slide-layout"><div class="slide-copy"><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p>${link(slide.href(),text(slide.cta),'button primary slide-cta')}</div></div>
       </div>`).join('')}
-      <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div><button type="button" class="carousel-pause" data-carousel-toggle aria-label="${tr('Pausar slides automáticos','Pause automatic slides')}">${tr('Pausar','Pause')}</button></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
+      <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
   }
 
   function home() {
-    return `${homeCarousel()}<section class="container simple-equipment" id="equipos"><div class="simple-heading"><h2>${tr('Codificadoras','Coding printers')}</h2><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo','View catalog')}</a></div><div class="simple-product-grid">${products.filter(p=>p.type==='printer').map(p=>`<article class="simple-product"><a class="simple-product-photo" href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true"><img src="${p.image}" alt="" width="800" height="650" loading="lazy"></a><h3><a href="${productUrl(p.id)}">${p.model}</a></h3><p>${p.id==='m1'?tr('Codificadora portátil con pantalla táctil de 3,5 pulgadas.','Handheld coding printer with a 3.5-inch touchscreen.'):tr('Codificadora con pantalla de 4,3 pulgadas para uso manual o integrado a una línea.','Coding printer with a 4.3-inch display for handheld or inline use.')}</p><p class="simple-product-ink">${tr('Cartucho compatible:','Compatible cartridge:')} <a href="${productUrl(p.ink)}">${p.ink.toUpperCase()}</a></p><a class="text-link" href="${productUrl(p.id)}">${tr('Ver','View')} ${p.model}</a></article>`).join('')}</div><a class="text-link compare-link" href="${url('catalogo.html')}#comparar">${tr('Comparar modelos','Compare models')}</a></section>
-      <section class="container simple-applications" id="aplicaciones"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></section><section class="container home-about"><h2>Rigel Colombia</h2><p>${tr('Somos parte de Rigel, empresa fundada en Ecuador y dedicada al marcaje y la codificación de productos. En Colombia ofrecemos las codificadoras M1 y RG1, sus tintas compatibles y orientación para elegir la solución adecuada.','We are part of Rigel, a company founded in Ecuador and focused on product marking and coding. In Colombia, we offer M1 and RG1 coding printers, their compatible inks and guidance to help you choose a suitable solution.')}</p><a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a></section>`;
+    return `${homeCarousel()}<section class="home-band equipment-band" id="equipos"><div class="container simple-equipment"><div class="simple-heading"><h2>${tr('Codificadoras','Coding printers')}</h2><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo','View catalog')}</a></div><div class="simple-product-grid">${products.filter(p=>p.type==='printer').map(p=>`<article class="simple-product"><a class="simple-product-photo" href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true"><img src="${p.image}" alt="" width="800" height="650" loading="lazy"></a><h3><a href="${productUrl(p.id)}">${p.model}</a></h3><p>${p.id==='m1'?tr('Codificadora portátil con pantalla táctil de 3,5 pulgadas.','Handheld coding printer with a 3.5-inch touchscreen.'):tr('Codificadora con pantalla de 4,3 pulgadas para uso manual o integrado a una línea.','Coding printer with a 4.3-inch display for handheld or inline use.')}</p><p class="simple-product-ink">${tr('Cartucho compatible:','Compatible cartridge:')} <a href="${productUrl(p.ink)}">${p.ink.toUpperCase()}</a></p><a class="text-link" href="${productUrl(p.id)}">${tr('Ver','View')} ${p.model}</a></article>`).join('')}</div><a class="text-link compare-link" href="${url('catalogo.html')}#comparar">${tr('Comparar modelos','Compare models')}</a></div></section>
+      <section class="home-band applications-band" id="aplicaciones"><div class="container simple-applications"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></div></section><section class="home-band about-band"><div class="container home-about"><h2>Rigel Colombia</h2><p>${tr('Somos parte de Rigel, empresa fundada en Ecuador y dedicada al marcaje y la codificación de productos. En Colombia ofrecemos las codificadoras M1 y RG1, sus tintas compatibles y orientación para elegir la solución adecuada.','We are part of Rigel, a company founded in Ecuador and focused on product marking and coding. In Colombia, we offer M1 and RG1 coding printers, their compatible inks and guidance to help you choose a suitable solution.')}</p><a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a></div></section>`;
   }
 
   function supportBlock() {
@@ -118,14 +118,14 @@
 
   let carouselIndex=0;
   let carouselTimer=null;
-  let carouselPaused=false;
+  let carouselReducedMotion=false;
   function stopCarousel() {
     if(carouselTimer!==null) window.clearInterval(carouselTimer);
     carouselTimer=null;
   }
   function startCarousel() {
     stopCarousel();
-    if(carouselPaused || document.hidden || page!=='home') return;
+    if(carouselReducedMotion || document.hidden || page!=='home') return;
     carouselTimer=window.setInterval(()=>showSlide(carouselIndex+1,false),5000);
   }
   function showSlide(index,manual=true) {
@@ -138,18 +138,10 @@
       startCarousel();
     }
   }
-  function updateCarouselToggle() {
-    const toggle=document.querySelector('[data-carousel-toggle]');
-    if(!toggle)return;
-    toggle.setAttribute('aria-label',tr(carouselPaused?'Reproducir slides automáticos':'Pausar slides automáticos',carouselPaused?'Play automatic slides':'Pause automatic slides'));
-    toggle.textContent=tr(carouselPaused?'Reanudar':'Pausar',carouselPaused?'Resume':'Pause');
-    toggle.setAttribute('aria-pressed',String(carouselPaused));
-  }
   function initCarousel() {
     const carousel=document.querySelector('.home-carousel');
     if(!carousel)return;
-    carouselPaused=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    updateCarouselToggle();
+    carouselReducedMotion=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
     carousel.addEventListener('focusin',event=>{if(event.target.closest('a'))stopCarousel();});
     carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget))startCarousel();});
@@ -272,7 +264,6 @@
   document.addEventListener('click', event=>{
     const slideTarget=event.target.closest('[data-slide-target]');
     if(slideTarget)showSlide(Number(slideTarget.dataset.slideTarget));
-    if(event.target.closest('[data-carousel-toggle]')){carouselPaused=!carouselPaused;updateCarouselToggle();if(carouselPaused)stopCarousel();else startCarousel();}
     const languageButton=event.target.closest('[data-language]');
     if(languageButton && languageButton.dataset.language!==language) {
       // Carry the current product and anchor into the other language.

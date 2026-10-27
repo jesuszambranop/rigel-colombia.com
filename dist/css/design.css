@@ -51,14 +51,15 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .slide--packaging .slide-copy h2{font-size:49px}
 .carousel-controls{position:absolute;left:0;right:0;bottom:19px}
 .carousel-tools{display:flex;align-items:center;gap:13px;width:fit-content}
-.carousel-tools>button{display:grid;place-items:center;border:0;background:transparent;padding:0;width:28px;height:34px;color:#596e7a;font-size:22px;font-weight:400}
-.carousel-tools>button:hover{color:var(--blue)}
-.carousel-tools>.carousel-pause{font-family:Inter,Arial,sans-serif;font-size:11px;width:auto;min-width:48px;padding:0 8px;margin-left:9px;font-weight:500}
 .slide-dots{display:flex;align-items:center;gap:3px}
 .slide-dots button{background:transparent;border:0;padding:8px;width:24px;height:32px;display:grid;place-items:center}
 .slide-dots button>span{height:6px;width:6px;background:#a7b4bd;border-radius:50%}
 .slide-dots button[aria-pressed=true]>span{background:var(--blue)}
 /* A short product list, without panels or repeating promotional sections. */
+.equipment-band{background:#f4f6f8}
+.applications-band{background:#e8f1f6}
+.about-band{background:#dcebf3}
+.simple-product-photo img,.simple-application-grid img{mix-blend-mode:multiply}
 .simple-equipment{padding-top:70px;padding-bottom:65px}
 .simple-heading{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:35px}
 .simple-heading h2,.simple-applications>h2{font-size:30px}
@@ -72,7 +73,7 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .simple-product-ink a{color:var(--blue)}
 .simple-product .text-link{font-size:13px}
 .compare-link{display:inline-block;margin-top:35px;font-size:12px}
-.simple-applications{padding-top:30px;padding-bottom:70px}
+.simple-applications{padding-top:60px;padding-bottom:65px}
 .simple-applications>h2{margin-bottom:18px}
 .simple-applications>p{font-size:14px;color:var(--muted);line-height:1.8;margin-bottom:32px}
 .simple-application-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:35px}
@@ -84,7 +85,7 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .simple-contact h2{font-size:27px;margin-bottom:17px}
 .simple-contact p{font-size:14px;color:var(--muted);margin:0}
 .simple-contact>a{flex-shrink:0}
-.home-about{padding-top:10px;padding-bottom:65px}
+.home-about{padding-top:55px;padding-bottom:60px}
 .home-about h2{font-size:27px;margin-bottom:20px}
 .home-about p{font-size:14px;line-height:1.9;color:var(--muted);max-width:760px;margin-bottom:20px}
 .about-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:75px;padding-top:45px;padding-bottom:75px;align-items:start}
@@ -209,7 +210,7 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
   .simple-product .simple-product-ink{font-size:10px}
   .simple-product .text-link{font-size:12px}
   .compare-link{margin-top:25px;font-size:11px}
-  .simple-applications{padding-top:20px;padding-bottom:45px}
+  .simple-applications{padding-top:45px;padding-bottom:45px}
   .simple-applications>p{font-size:13px;margin-bottom:24px}
   .simple-application-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 25px}
   .simple-application-grid img{height:190px;margin-bottom:15px}
@@ -269,3 +270,5 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 @media(max-width:960px){.about-layout{gap:40px;grid-template-columns:1.2fr 1fr}.about-copy h1{font-size:37px}.about-photo img{height:410px}}
 @media(max-width:760px){.home-about{padding-bottom:45px}.home-about h2{font-size:25px}.home-about p{font-size:13px}.about-layout{grid-template-columns:1fr;gap:32px;padding-top:32px;padding-bottom:45px}.about-copy h1{font-size:35px;margin-bottom:24px}.about-copy h2{font-size:24px}.about-copy p{font-size:13px}.about-photo{max-width:500px;margin:0}.about-photo img{height:390px}}
 @media(max-width:480px){.about-copy h1{font-size:31px}.about-photo img{height:350px}}
+
+@media(max-width:760px){.home-about{padding-top:40px;padding-bottom:45px}}
