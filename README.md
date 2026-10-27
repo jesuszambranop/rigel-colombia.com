@@ -14,8 +14,8 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 ## Contenido
 
 - Inicio con tres slides de marcaje y codificación: fechas/lotes en envases, M1 en uso y marcaje de envases cosméticos. Controles anterior/siguiente, selector de slide, pausa y reproducción automática respetando movimiento reducido.
-- Nueva distribución: accesos al catálogo, bloques alternos para M1 y RG1, aplicaciones por industria, tintas y contacto.
-- Tipografía local: **Poppins Black (900)** en títulos, **Inter Medium (500)** en párrafos y **Poppins Bold (700)** en rótulos sobre imágenes y navegación. Los archivos de fuentes y sus licencias OFL están en `dist/assets/fonts/`.
+- Distribución simplificada: slides con controles discretos, dos equipos y aplicaciones sobre fondo blanco; sin numeraciones decorativas, franjas de iconos ni paneles de color.
+- Tipografía local: **Poppins Bold (700)** en títulos, **Inter Medium (500)** en párrafos y **Poppins Bold (700)** en rótulos sobre imágenes y navegación. Los archivos de fuentes y sus licencias OFL están en `dist/assets/fonts/`.
 - Catálogo con búsqueda, filtros y comparación M1/RG1.
 - Fichas de producto con galerías y compatibilidad de consumibles.
 - Ficha técnica M1 en español e inglés. No se añadió una ficha PDF de RG1 porque no se suministró.
