@@ -13,7 +13,9 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 
 ## Contenido
 
-- Inicio con presentación de equipos, aplicaciones, tintas y asesoría.
+- Inicio con tres slides de marcaje y codificación: fechas/lotes en envases, M1 en uso y marcaje de envases cosméticos. Controles anterior/siguiente, selector de slide, pausa y reproducción automática respetando movimiento reducido.
+- Nueva distribución: accesos al catálogo, bloques alternos para M1 y RG1, aplicaciones por industria, tintas y contacto.
+- Tipografía local: **Poppins Black (900)** en títulos, **Inter Medium (500)** en párrafos y **Poppins Bold (700)** en rótulos sobre imágenes y navegación. Los archivos de fuentes y sus licencias OFL están en `dist/assets/fonts/`.
 - Catálogo con búsqueda, filtros y comparación M1/RG1.
 - Fichas de producto con galerías y compatibilidad de consumibles.
 - Ficha técnica M1 en español e inglés. No se añadió una ficha PDF de RG1 porque no se suministró.
@@ -58,7 +60,8 @@ La carpeta `.openai/` contiene la configuración de una vista alojada en Sites, 
 | `dist/js/config.js` | Correo y WhatsApp de contacto |
 | `dist/js/products.js` | Los cuatro productos, textos ES/EN y especificaciones |
 | `dist/js/app.js` | Páginas, traducciones, filtros y formularios |
-| `dist/css/styles.css` | Diseño y adaptación a móviles |
+| `dist/css/styles.css` | Estilos de catálogo y páginas interiores |
+| `dist/css/design.css` | Fuentes, nueva portada, carrusel y distribución responsive |
 | `dist/assets/` | Imágenes y documentos utilizados |
 
 El contacto comercial confirmado de Colombia es **colombia@rigelsa.com** y WhatsApp **+57 310 812 3039**. El enlace de WhatsApp utiliza el formato internacional `573108123039`.
@@ -69,7 +72,7 @@ Las imágenes de galerías suministradas pueden contener texto incorporado; el c
 
 ## Referencias y procedencia
 
-La composición se inspira en el catálogo suministrado en `Rigel_Catalogo_HTML.zip`, conservando el enfoque de catálogo y desarrollando una presentación propia. Las imágenes y la marca proceden de `assets.zip`.
+El sitio conserva el enfoque de catálogo del archivo `Rigel_Catalogo_HTML.zip`. La portada utiliza una nueva composición con slides de marcaje y codificación, fotografías de aplicaciones y bloques alternos de producto. Las imágenes y la marca proceden de `assets.zip`. Las fuentes Poppins e Inter proceden del repositorio oficial `google/fonts` y se distribuyen con sus licencias OFL.
 
 Las especificaciones y compatibilidades se contrastaron con los archivos suministrados y el catálogo de [Rigel Ecuador](https://rigelsa.com/) — archivos públicos `js/data.js` e `js/inventario-bilingue.js`, consultados el 27 de octubre de 2026. Las condiciones comerciales de Colombia se confirman al cotizar.
 

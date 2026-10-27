@@ -61,18 +61,113 @@
     ['latas.webp',['Industria y empaques','Industry & packaging'],['Marcaje en metal, cartón y plástico.','Marking on metal, cardboard and plastic.']]
   ];
 
+  const homeSlides = [
+    {
+      image: 'assets/slides/marcaje-fechas-lotes.webp', kind: 'marking',
+      alt: ['Marcaje de fechas y lote sobre la tapa de un envase de vidrio','Date and batch marking on a glass container lid'],
+      label: ['MARCAJE Y CODIFICACIÓN','MARKING & CODING'],
+      title: ['MARCAJE Y<br><em>CODIFICACIÓN.</em>','MARKING<br><em>& CODING.</em>'],
+      description: ['Fechas, lotes y códigos que identifican tu producto. Encuentra el equipo y la tinta para tu proceso.','Dates, batches and codes that identify your product. Find the printer and ink for your process.'],
+      cta: ['Explorar codificadoras','Explore coding printers'],
+      href: () => url('catalogo.html',{tipo:'printer'}),
+      tab: ['Fechas y lotes','Dates & batches'],
+      caption: ['Identificación en cada empaque','Identification on every package']
+    },
+    {
+      image: 'assets/slides/codificacion-manual-m1.webp', kind: 'handheld',
+      alt: ['Codificadora M1 utilizada con una mano sobre un empaque','M1 coding printer used with one hand on packaging'],
+      label: ['CODIFICADORA PORTÁTIL M1','M1 HANDHELD CODING PRINTER'],
+      title: ['CODIFICA.<br><em>A TU MANERA.</em>','CODE.<br><em>YOUR WAY.</em>'],
+      description: ['Lleva fechas, textos y códigos al lugar donde trabajas. Conoce la M1 y su cartucho S70.','Take dates, text and codes wherever you work. Meet the M1 and its S70 cartridge.'],
+      cta: ['Conocer la M1','Explore the M1'],
+      href: () => productUrl('m1'),
+      tab: ['Codificación portátil','Handheld coding'],
+      caption: ['M1 + cartucho S70','M1 + S70 cartridge']
+    },
+    {
+      image: 'assets/slides/marcaje-envases.webp', kind: 'packaging',
+      alt: ['Envases cosméticos como ejemplo de superficies para marcaje','Cosmetic containers as examples of marking surfaces'],
+      label: ['TU PRODUCTO. TU APLICACIÓN.','YOUR PRODUCT. YOUR APPLICATION.'],
+      title: ['TU EMPAQUE.<br><em>BIEN IDENTIFICADO.</em>','YOUR PACKAGING.<br><em>CLEARLY IDENTIFIED.</em>'],
+      description: ['Vidrio, plástico, cartón o metal. Revisemos tu superficie y el mensaje que necesitas imprimir.','Glass, plastic, cardboard or metal. Let’s review your material and the message you need to print.'],
+      cta: ['Consultar mi aplicación','Discuss my application'],
+      href: () => url('contacto.html'),
+      tab: ['Marcaje de envases','Container marking'],
+      caption: ['La combinación empieza en tu material','The right match starts with your material']
+    }
+  ];
+
+  function homeCarousel() {
+    return `<section class="home-carousel" aria-label="${tr('Marcaje y codificación Rigel Colombia','Rigel Colombia marking and coding')}" aria-roledescription="${tr('carrusel','carousel')}">
+      <h1 class="sr-only">${tr('Marcaje y codificación en Colombia. Codificadoras M1 y RG1.','Marking and coding in Colombia. M1 and RG1 coding printers.')}</h1>
+      <div class="slide-stage">${homeSlides.map((slide,i)=>`<div id="home-slide-${i}" class="home-slide slide--${slide.kind}" role="group" aria-roledescription="${tr('diapositiva','slide')}" aria-label="${i+1} ${tr('de','of')} ${homeSlides.length}" ${i ? 'hidden' : ''}>
+        <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2793" height="1204" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
+        <div class="container slide-layout"><div class="slide-copy"><p class="image-heading">${text(slide.label)}</p><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p>${link(slide.href(),text(slide.cta),'button primary slide-cta')}</div><span class="slide-caption">${text(slide.caption)}</span></div>
+      </div>`).join('')}
+      <div class="carousel-tools"><button type="button" data-slide-step="-1" aria-label="${tr('Slide anterior','Previous slide')}"><span class="reverse-arrow">${arrow}</span></button><span id="slide-counter" aria-hidden="true">01 / 03</span><button type="button" data-slide-step="1" aria-label="${tr('Siguiente slide','Next slide')}">${arrow}</button><button type="button" class="carousel-pause" data-carousel-toggle aria-label="${tr('Pausar slides automáticos','Pause automatic slides')}"><span aria-hidden="true">Ⅱ</span></button></div></div>
+      <div class="carousel-bottom"><div class="container slide-tabs" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}"><span class="slide-tab-index">0${i+1}</span><span><strong>${text(slide.tab)}</strong><small>${text(slide.caption)}</small></span><span class="tab-arrow">${arrow}</span></button>`).join('')}</div></div><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
+  }
+
+  function showcaseProduct(p,i) {
+    const photo=p.id==='m1'?'assets/productos/m1/galeria-5.webp':p.image;
+    const pair=products.find(other=>other.id===p.ink);
+    return `<article class="showcase-product ${i===1?'showcase-product--reverse':''}"><div class="showcase-visual"><span class="image-heading">${tr('CODIFICADORA','CODING PRINTER')} ${p.model}</span><img src="${photo}" alt="${text(p.name)}" width="1000" height="750" loading="lazy"><span class="showcase-photo-caption">${text(p.family)}</span></div><div class="showcase-copy"><p class="eyebrow">${text(p.family)}</p><h3>${p.model}</h3><p class="showcase-summary">${text(p.summary)}</p><div class="showcase-specs"><div><strong>${tr('12,7 mm','12.7 mm')}</strong><span>${tr('Altura de impresión','Print height')}</span></div><div><strong>${p.id==='m1'?tr('1–4 líneas','1–4 lines'):tr('1–6 líneas','1–6 lines')}</strong><span>${tr('Líneas de impresión','Print lines')}</span></div><div><strong>${pair.model}</strong><span>${tr('Cartucho compatible','Matching cartridge')}</span></div></div><div class="showcase-actions">${link(productUrl(p.id),tr('Explorar','Explore')+' '+p.model)}<a class="text-link" href="${url('contacto.html',{producto:p.id})}">${tr('Cotizar equipo','Request a quote')}${arrow}</a></div><a class="showcase-pair" href="${productUrl(pair.id)}"><img src="${pair.image}" width="70" height="70" alt=""><span>${tr('Conoce su cartucho','Explore its cartridge')} <strong>${pair.model}</strong></span>${arrow}</a></div></article>`;
+  }
+
   function home() {
-    const m1=products[0];
-    return `<section class="hero"><div class="container hero-grid"><div class="hero-copy"><p class="eyebrow"><span class="blue-line"></span> RIGEL COLOMBIA</p><h1>${tr('Cada producto,<br><em>bien identificado.</em>','Every product,<br><em>clearly identified.</em>')}</h1><p class="hero-description">${tr('Codificadoras y tintas para darle a tu producción una marca clara. Descubre la M1 y la RG1: dos formas de llevar tu información más lejos.','Coding printers and inks that leave a clear mark on your production. Discover M1 and RG1: two ways to take your product information further.')}</p><div class="hero-buttons">${link(url('catalogo.html'),tr('Explorar catálogo','Explore catalog'))}<a class="text-link" href="${url('contacto.html')}">${tr('Encuentra tu equipo','Find your printer')}${arrow}</a></div><div class="hero-note"><span class="note-mark" aria-hidden="true">+</span><span>${tr('Fechas. Lotes. Logotipos. Códigos.','Dates. Batches. Logos. Codes.')}<br><strong>${tr('Tu información, donde importa.','Your information, where it matters.')}</strong></span></div></div><div class="hero-visual"><div class="hero-visual-top"><span>${tr('PRECISIÓN EN CADA PASADA','PRECISION IN EVERY PASS')}</span><span>01 — M1</span></div><div class="hero-product-name" aria-hidden="true">M1</div><img class="hero-machine" src="${m1.image}" alt="${tr('Codificadora portátil Rigel M1 con pantalla táctil','Rigel M1 handheld coding printer with touchscreen')}" width="780" height="650" fetchpriority="high"><div class="hero-caption"><span><strong>${tr('Pequeña en tamaño.','Small in size.')}<br>${tr('Grande en posibilidades.','Big on possibilities.')}</strong><small>${tr('Portátil · Táctil · Cartucho S70','Handheld · Touchscreen · S70 cartridge')}</small></span><a href="${productUrl('m1')}" class="round-link" aria-label="${tr('Ver codificadora M1','View M1 coding printer')}">${arrow}</a></div></div></div></section>
-      <div class="benefits"><div class="container benefits-grid"><div><span>01</span><p>${tr('Elige tu equipo','Choose your printer')}<strong>${tr('M1 o RG1','M1 or RG1')}</strong></p></div><div><span>02</span><p>${tr('Combina tu tinta','Match your ink')}<strong>S70 / RCN1</strong></p></div><div><span>03</span><p>${tr('Resuelve tu aplicación','Find your application')}<strong>${tr('Asesoría personalizada','Personalized advice')}</strong></p></div></div></div>
-      <section class="section container" id="equipos">${sectionHeading(tr('ELIGE CÓMO CODIFICAR','CHOOSE HOW TO CODE'),tr('Dos equipos.<br>Tu siguiente paso.','Two printers.<br>Your next step.'),tr('Del trabajo manual a tu línea de producción. Explora la solución que mejor se adapta a tu proceso.','From handheld work to your production line. Explore the solution that suits your process.'))}<div class="equipment-grid">${products.filter(p=>p.type==='printer').map(productCard).join('')}</div><div class="section-end">${link(url('catalogo.html'),tr('Ver todo el catálogo','View full catalog'),'button outline')}<a class="text-link" href="${url('catalogo.html')}#comparar">${tr('Comparar M1 y RG1','Compare M1 and RG1')}${arrow}</a></div></section>
-      <section class="applications-section section" id="aplicaciones"><div class="container">${sectionHeading(tr('UNA MARCA EN CADA INDUSTRIA','A MARK IN EVERY INDUSTRY'),tr('Tu producto.<br>Tu aplicación.','Your product.<br>Your application.'),tr('La superficie y el contenido definen la mejor combinación. Cuéntanos qué necesitas imprimir.','The material and content determine the right combination. Tell us what you need to print.'))}<div class="application-grid">${applications.map(([img,title,desc],i)=>`<a class="application" href="${url('contacto.html',{aplicacion:text(title)})}"><div><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="500" height="400" loading="lazy"><span>0${i+1}</span></div><h3>${text(title)}${arrow}</h3><p>${text(desc)}</p></a>`).join('')}</div><p class="surface-note">${tr('La adherencia y el acabado dependen del material. Recomendamos validar la tinta sobre una muestra de tu empaque.','Adhesion and finish depend on the material. We recommend testing the ink on a sample of your packaging.')}</p></div></section>
-      <section class="section container ink-section">${sectionHeading(tr('EL COMPLEMENTO CORRECTO','THE RIGHT MATCH'),tr('La tinta también<br>hace la diferencia.','The right ink<br>makes a difference.'),tr('Cada equipo, con su cartucho. Una selección clara para mantener tu operación en marcha.','Each printer has its cartridge. A clear selection to keep your operation moving.'))}<div class="ink-pairs">${products.filter(p=>p.type==='ink').map(p=>`<a class="ink-pair" href="${productUrl(p.id)}"><img src="${p.image}" alt="${text(p.name)}" width="220" height="220" loading="lazy"><div><span class="eyebrow">${tr('TINTA SOLVENTE','SOLVENT INK')}</span><h3>${p.model}</h3><p>${tr('Para tu','For your')} <strong>${p.printer.toUpperCase()}</strong></p><span class="text-link">${tr('Conocer cartucho','Explore cartridge')}${arrow}</span></div></a>`).join('')}</div></section>${supportBlock()}`;
+    return `${homeCarousel()}<div class="home-shortcuts container"><a href="${url('catalogo.html',{tipo:'printer'})}"><span class="shortcut-icon" aria-hidden="true">${download}</span><div><strong>${tr('Codificadoras','Coding printers')}</strong><span>M1 / RG1</span></div>${arrow}</a><a href="${url('catalogo.html',{tipo:'ink'})}"><span class="shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3s-6 7-6 12a6 6 0 0 0 12 0c0-5-6-12-6-12Z" stroke="currentColor" stroke-width="1.5"/></svg></span><div><strong>${tr('Cartuchos de tinta','Ink cartridges')}</strong><span>S70 / RCN1</span></div>${arrow}</a><a href="${url('contacto.html')}"><span class="shortcut-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12h-9l-5 4v-4H4V4Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 8h8M8 12h5" stroke="currentColor" stroke-width="1.5"/></svg></span><div><strong>${tr('Asesoría para tu proceso','Advice for your process')}</strong><span>${tr('Hablemos de tu aplicación','Let’s discuss your application')}</span></div>${arrow}</a></div>
+      <section class="home-equipment section container" id="equipos"><div class="home-section-heading"><p class="eyebrow">${tr('EL PORTAFOLIO DE COLOMBIA','THE COLOMBIA RANGE')}</p><h2>${tr('CODIFICADORAS PARA<br>TU OPERACIÓN.','CODING PRINTERS FOR<br>YOUR OPERATION.')}</h2><p>${tr('Elige cómo trabajas. Nosotros te ayudamos a encontrar tu combinación.','Choose how you work. We help you find your combination.')}</p></div><div class="product-showcase">${products.filter(p=>p.type==='printer').map(showcaseProduct).join('')}</div><div class="compare-invitation"><p>${tr('¿Cuál se adapta a tu producción?','Which one suits your production?')}</p><a class="text-link" href="${url('catalogo.html')}#comparar">${tr('Comparar M1 y RG1','Compare M1 and RG1')}${arrow}</a></div></section>
+      <section class="home-applications section" id="aplicaciones"><div class="container"><div class="application-heading"><div><p class="eyebrow">${tr('MARCAJE SOBRE DIFERENTES SUPERFICIES','MARKING ON DIFFERENT MATERIALS')}</p><h2>${tr('TU INDUSTRIA.<br>TU APLICACIÓN.','YOUR INDUSTRY.<br>YOUR APPLICATION.')}</h2></div><p>${tr('Fechas, lotes, textos y códigos para identificar lo que produces.','Dates, batches, text and codes to identify what you produce.')}</p></div><div class="application-photo-grid">${applications.map(([img,title,desc],i)=>`<a class="application-photo" href="${url('contacto.html',{aplicacion:text(title)})}"><div class="application-photo-top"><span class="image-heading">${text(title)}</span><span>0${i+1}</span></div><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="550" loading="lazy"><span class="application-photo-bottom">${text(desc)}${arrow}</span></a>`).join('')}</div><p class="surface-note">${tr('La adherencia depende de tu material. Consulta una prueba de impresión antes de elegir tu combinación.','Adhesion depends on your material. Ask about a print test before choosing your combination.')}</p></div></section>
+      <section class="section container home-consumables"><div class="consumables-heading"><p class="eyebrow">${tr('CADA EQUIPO, CON SU TINTA','THE RIGHT INK FOR EACH PRINTER')}</p><h2>${tr('EL CARTUCHO<br>CORRECTO.','THE RIGHT<br>CARTRIDGE.')}</h2><p>${tr('Dos combinaciones claras para tu operación en Colombia.','Two clear combinations for your operation in Colombia.')}</p><a class="text-link" href="${url('catalogo.html',{tipo:'ink'})}">${tr('Ver cartuchos','View cartridges')}${arrow}</a></div><div class="consumables-list">${products.filter(p=>p.type==='ink').map(p=>`<a href="${productUrl(p.id)}" class="consumable-row"><img src="${p.image}" alt="${text(p.name)}" width="220" height="200" loading="lazy"><div><p class="eyebrow">${tr('TINTA SOLVENTE','SOLVENT INK')}</p><h3>${p.model}</h3><p>${tr('Para codificadora','For coding printer')} <strong>${p.printer.toUpperCase()}</strong></p></div><span class="consumable-link">${arrow}</span></a>`).join('')}</div></section>${supportBlock()}`;
   }
 
   function supportBlock() {
-    return `<section class="support-block"><div class="container support-grid"><div><p class="eyebrow">${tr('ESTAMOS PARA AYUDARTE','WE’RE HERE TO HELP')}</p><h2>${tr('La mejor elección<br>empieza conversando.','The right choice<br>starts with a conversation.')}</h2><p>${tr('Cuéntanos qué produces, sobre qué material imprimes y cómo trabajas. Te ayudamos a encontrar la combinación adecuada.','Tell us what you produce, what material you print on and how you work. We will help you find the right combination.')}</p>${link(url('contacto.html'),tr('Hablar con un asesor','Talk to an advisor'),'button white')}</div><div class="support-detail"><span aria-hidden="true">R<span>+</span></span><p>${tr('Asesoría de producto<br>Selección de tinta<br>Orientación técnica','Product advice<br>Ink selection<br>Technical guidance')}</p></div></div></section>`;
+    return `<section class="support-block"><div class="container support-grid"><div><p class="eyebrow">RIGEL COLOMBIA</p><h2>${tr('HABLEMOS DE<br>TU PRODUCCIÓN.','LET’S TALK ABOUT<br>YOUR PRODUCTION.')}</h2><p>${tr('Cuéntanos qué necesitas imprimir. Te orientamos sobre el equipo y el cartucho para tu aplicación.','Tell us what you need to print. We will guide you through the printer and cartridge for your application.')}</p>${link(url('contacto.html'),tr('Recibir asesoría','Get advice'),'button white')}</div><div class="support-direct"><span>${tr('ATENCIÓN COMERCIAL','SALES & SUPPORT')}</span><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)} ${arrow}</a>`:''}<p>M1 + S70 <span>/</span> RG1 + RCN1</p></div></div></section>`;
   }
+
+  let carouselIndex=0;
+  let carouselTimer=null;
+  let carouselPaused=false;
+  function stopCarousel() {
+    if(carouselTimer!==null) window.clearInterval(carouselTimer);
+    carouselTimer=null;
+  }
+  function startCarousel() {
+    stopCarousel();
+    if(carouselPaused || document.hidden || page!=='home') return;
+    carouselTimer=window.setInterval(()=>showSlide(carouselIndex+1,false),7000);
+  }
+  function showSlide(index,manual=true) {
+    carouselIndex=(index+homeSlides.length)%homeSlides.length;
+    document.querySelectorAll('.home-slide').forEach((slide,i)=>{slide.hidden=i!==carouselIndex;});
+    document.querySelectorAll('[data-slide-target]').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===carouselIndex)));
+    document.getElementById('slide-counter').textContent=`0${carouselIndex+1} / 0${homeSlides.length}`;
+    if(manual) {
+      document.getElementById('slide-announcement').textContent=`${carouselIndex+1} ${tr('de','of')} ${homeSlides.length}: ${text(homeSlides[carouselIndex].tab)}`;
+      stopCarousel();
+      carouselPaused=true;
+      updateCarouselToggle();
+    }
+  }
+  function updateCarouselToggle() {
+    const toggle=document.querySelector('[data-carousel-toggle]');
+    if(!toggle)return;
+    toggle.setAttribute('aria-label',tr(carouselPaused?'Reproducir slides automáticos':'Pausar slides automáticos',carouselPaused?'Play automatic slides':'Pause automatic slides'));
+    toggle.querySelector('span').textContent=carouselPaused?'▶':'Ⅱ';
+  }
+  function initCarousel() {
+    const carousel=document.querySelector('.home-carousel');
+    if(!carousel)return;
+    carouselPaused=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    updateCarouselToggle();
+    carousel.addEventListener('mouseenter',stopCarousel);
+    carousel.addEventListener('mouseleave',startCarousel);
+    carousel.addEventListener('focusin',stopCarousel);
+    carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget))startCarousel();});
+    document.addEventListener('visibilitychange',()=>document.hidden?stopCarousel():startCarousel());
+    startCarousel();
+  }
+
 
   function comparison() {
     const rows = [
@@ -164,6 +259,7 @@
     const views={home,catalog,product,faq,guides:guidePage,contact,privacy};
     document.getElementById('main-content').innerHTML=(views[page]||home)();
     footer();
+    initCarousel();
     if(page==='catalog') updateCatalog();
     document.getElementById('contact-form')?.addEventListener('submit', event=>{
       event.preventDefault();
@@ -181,6 +277,11 @@
   }
 
   document.addEventListener('click', event=>{
+    const slideTarget=event.target.closest('[data-slide-target]');
+    if(slideTarget)showSlide(Number(slideTarget.dataset.slideTarget));
+    const slideStep=event.target.closest('[data-slide-step]');
+    if(slideStep)showSlide(carouselIndex+Number(slideStep.dataset.slideStep));
+    if(event.target.closest('[data-carousel-toggle]')){carouselPaused=!carouselPaused;updateCarouselToggle();if(carouselPaused)stopCarousel();else startCarousel();}
     const languageButton=event.target.closest('[data-language]');
     if(languageButton && languageButton.dataset.language!==language) {
       // Carry the current product and anchor into the other language.
@@ -208,6 +309,7 @@
     if(event.target.id==='catalog-search') {catalogSearch=event.target.value;updateCatalog();}
   });
   document.addEventListener('keydown',event=>{
+    if(page==='home' && event.target.closest?.('.home-carousel') && ['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();showSlide(carouselIndex+(event.key==='ArrowRight'?1:-1));}
     if(event.key==='Escape') {
       const toggle=document.querySelector('.menu-toggle');toggle?.setAttribute('aria-expanded','false');
       document.getElementById('main-nav')?.classList.remove('is-open');

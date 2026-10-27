@@ -31,6 +31,13 @@ for(const file of htmlFiles){
   }
 }
 for(const file of ['app.js','products.js','config.js'])new vm.Script(readFileSync(join(root,'js',file),'utf8'),{filename:file});
+for(const file of readdirSync(join(root,'css')).filter(name=>name.endsWith('.css'))){
+  const css=readFileSync(join(root,'css',file),'utf8');
+  for(const match of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)){
+    if(/^(https?:|data:)/.test(match[1]))continue;
+    assert.ok(existsSync(resolve(root,'css',match[1])),`Missing CSS asset: ${match[1]}`);
+  }
+}
 assert.match(context.window.RIGEL_CONFIG.email,/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 assert.ok(context.window.RIGEL_CONFIG.whatsapp===null||/^\d{10,15}$/.test(context.window.RIGEL_CONFIG.whatsapp));
 console.log(`PASS: ${products.length} products, exact Colombia pairings, bilingual content, local assets, ${htmlFiles.length} HTML pages and JavaScript syntax.`);
