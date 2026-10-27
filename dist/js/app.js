@@ -28,9 +28,10 @@
 
   function header() {
     const nav = [
+      ['index.html',tr('Inicio','Home'),'home'],
       ['catalogo.html',tr('Catálogo','Catalog'),'catalog'],
-      ['index.html#aplicaciones',tr('Aplicaciones','Applications'),'applications'],
-      ['contacto.html',tr('Contacto','Contact'),'contact']
+      ['contacto.html',tr('Contacto','Contact'),'contact'],
+      ['quienes-somos.html',tr('Quiénes somos','About us'),'about']
     ];
     document.getElementById('site-header').innerHTML = `
       <div class="header-main container">
@@ -43,7 +44,7 @@
   function footer() {
     document.getElementById('site-footer').innerHTML = `
       <div class="container footer-top"><div class="footer-about"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="150" height="52"><p>${tr('Codificadoras y tintas para Colombia.','Coding printers and inks for Colombia.')}</p><span class="footer-country">COLOMBIA</span></div>
-      <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${productUrl('m1')}">M1 + S70</a><a href="${productUrl('rg1')}">RG1 + RCN1</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a></div>
+      <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${productUrl('m1')}">M1 + S70</a><a href="${productUrl('rg1')}">RG1 + RCN1</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a><a href="${url('quienes-somos.html')}">${tr('Quiénes somos','About us')}</a></div>
       <div><h2>${tr('Te acompañamos','Here to help')}</h2><a href="${url('contacto.html')}">${tr('Asesoría y soporte','Advice and support')}</a><a href="${url('preguntas-frecuentes.html')}">${tr('Preguntas frecuentes','Frequently asked questions')}</a><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div>
       <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Rigel. ${tr('Todos los derechos reservados.','All rights reserved.')}</span><a href="https://rigelsa.com/" target="_blank" rel="noopener noreferrer">${tr('Visita Rigel Ecuador','Visit Rigel Ecuador')} ↗</a><a href="${url('privacidad.html')}">${tr('Privacidad','Privacy')}</a></div>`;
   }
@@ -102,12 +103,12 @@
         <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2793" height="1204" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
         <div class="container slide-layout"><div class="slide-copy"><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p>${link(slide.href(),text(slide.cta),'button primary slide-cta')}</div></div>
       </div>`).join('')}
-      <div class="container carousel-controls"><div class="carousel-tools"><button type="button" data-slide-step="-1" aria-label="${tr('Slide anterior','Previous slide')}">‹</button><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div><button type="button" data-slide-step="1" aria-label="${tr('Siguiente slide','Next slide')}">›</button><button type="button" class="carousel-pause" data-carousel-toggle aria-label="${tr('Pausar slides automáticos','Pause automatic slides')}"><span aria-hidden="true">Ⅱ</span></button></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
+      <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div><button type="button" class="carousel-pause" data-carousel-toggle aria-label="${tr('Pausar slides automáticos','Pause automatic slides')}">${tr('Pausar','Pause')}</button></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
   }
 
   function home() {
     return `${homeCarousel()}<section class="container simple-equipment" id="equipos"><div class="simple-heading"><h2>${tr('Codificadoras','Coding printers')}</h2><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo','View catalog')}</a></div><div class="simple-product-grid">${products.filter(p=>p.type==='printer').map(p=>`<article class="simple-product"><a class="simple-product-photo" href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true"><img src="${p.image}" alt="" width="800" height="650" loading="lazy"></a><h3><a href="${productUrl(p.id)}">${p.model}</a></h3><p>${p.id==='m1'?tr('Codificadora portátil con pantalla táctil de 3,5 pulgadas.','Handheld coding printer with a 3.5-inch touchscreen.'):tr('Codificadora con pantalla de 4,3 pulgadas para uso manual o integrado a una línea.','Coding printer with a 4.3-inch display for handheld or inline use.')}</p><p class="simple-product-ink">${tr('Cartucho compatible:','Compatible cartridge:')} <a href="${productUrl(p.ink)}">${p.ink.toUpperCase()}</a></p><a class="text-link" href="${productUrl(p.id)}">${tr('Ver','View')} ${p.model}</a></article>`).join('')}</div><a class="text-link compare-link" href="${url('catalogo.html')}#comparar">${tr('Comparar modelos','Compare models')}</a></section>
-      <section class="container simple-applications" id="aplicaciones"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></section>`;
+      <section class="container simple-applications" id="aplicaciones"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></section><section class="container home-about"><h2>Rigel Colombia</h2><p>${tr('Somos parte de Rigel, empresa fundada en Ecuador y dedicada al marcaje y la codificación de productos. En Colombia ofrecemos las codificadoras M1 y RG1, sus tintas compatibles y orientación para elegir la solución adecuada.','We are part of Rigel, a company founded in Ecuador and focused on product marking and coding. In Colombia, we offer M1 and RG1 coding printers, their compatible inks and guidance to help you choose a suitable solution.')}</p><a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a></section>`;
   }
 
   function supportBlock() {
@@ -125,7 +126,7 @@
   function startCarousel() {
     stopCarousel();
     if(carouselPaused || document.hidden || page!=='home') return;
-    carouselTimer=window.setInterval(()=>showSlide(carouselIndex+1,false),7000);
+    carouselTimer=window.setInterval(()=>showSlide(carouselIndex+1,false),5000);
   }
   function showSlide(index,manual=true) {
     carouselIndex=(index+homeSlides.length)%homeSlides.length;
@@ -134,25 +135,23 @@
     document.getElementById('slide-counter').textContent=`0${carouselIndex+1} / 0${homeSlides.length}`;
     if(manual) {
       document.getElementById('slide-announcement').textContent=`${carouselIndex+1} ${tr('de','of')} ${homeSlides.length}: ${text(homeSlides[carouselIndex].tab)}`;
-      stopCarousel();
-      carouselPaused=true;
-      updateCarouselToggle();
+      startCarousel();
     }
   }
   function updateCarouselToggle() {
     const toggle=document.querySelector('[data-carousel-toggle]');
     if(!toggle)return;
     toggle.setAttribute('aria-label',tr(carouselPaused?'Reproducir slides automáticos':'Pausar slides automáticos',carouselPaused?'Play automatic slides':'Pause automatic slides'));
-    toggle.querySelector('span').textContent=carouselPaused?'▶':'Ⅱ';
+    toggle.textContent=tr(carouselPaused?'Reanudar':'Pausar',carouselPaused?'Resume':'Pause');
+    toggle.setAttribute('aria-pressed',String(carouselPaused));
   }
   function initCarousel() {
     const carousel=document.querySelector('.home-carousel');
     if(!carousel)return;
     carouselPaused=!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     updateCarouselToggle();
-    carousel.addEventListener('mouseenter',stopCarousel);
-    carousel.addEventListener('mouseleave',startCarousel);
-    carousel.addEventListener('focusin',stopCarousel);
+
+    carousel.addEventListener('focusin',event=>{if(event.target.closest('a'))stopCarousel();});
     carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget))startCarousel();});
     document.addEventListener('visibilitychange',()=>document.hidden?stopCarousel():startCarousel());
     startCarousel();
@@ -235,18 +234,22 @@
     return `${crumb(tr('Contacto','Contact'))}<section class="container contact-layout"><div class="contact-copy"><p class="eyebrow">${tr('HABLEMOS DE TU PRODUCCIÓN','LET’S TALK ABOUT YOUR PRODUCTION')}</p><h1>${tr('Contacto','Contact')}</h1><p class="lead">${tr('Encuentra el equipo, el cartucho y la orientación que necesitas para tu aplicación.','Find the printer, cartridge and guidance you need for your application.')}</p><div class="contact-channel"><span class="eyebrow">${tr('RIGEL COLOMBIA','RIGEL COLOMBIA')}</span><a href="mailto:${esc(config.email)}">${esc(config.email)} ↗</a><p>${tr('Consultas para Colombia y orientación de producto.','Colombia inquiries and product guidance.')}</p>${config.whatsapp ? `<a class="text-link" href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)} ${arrow}</a>` : ''}</div><div class="contact-steps"><span>01 / ${tr('Cuéntanos tu aplicación','Tell us about your application')}</span><span>02 / ${tr('Revisamos equipo y tinta','We review the printer and ink')}</span><span>03 / ${tr('Solicita tu cotización','Request your quote')}</span></div></div><form id="contact-form" class="contact-form"><h2>${tr('Cuéntanos qué necesitas.','Tell us what you need.')}</h2><p>${tr('Todos los campos marcados con * son obligatorios.','All fields marked with * are required.')}</p><div class="form-row"><label>${tr('Nombre','Name')} *<input name="name" autocomplete="name" required maxlength="100"></label><label>${tr('Empresa','Company')}<input name="company" autocomplete="organization" maxlength="120"></label></div><label>${tr('Correo electrónico','Email address')} *<input name="email" type="email" autocomplete="email" required maxlength="150"></label><div class="form-row"><label>${tr('Ciudad','City')}<input name="city" autocomplete="address-level2" maxlength="100"></label><label>${tr('Me interesa','I’m interested in')}<select name="product"><option value="">${tr('Necesito asesoría','I need advice')}</option>${products.map(p=>`<option value="${p.id}" ${chosen?.id===p.id?'selected':''}>${text(p.name)}</option>`).join('')}</select></label></div><label>${tr('Tu aplicación o consulta','Your application or question')} *<textarea name="message" rows="5" required maxlength="3000" placeholder="${tr('¿Qué material utilizas? ¿Qué necesitas imprimir?','What material do you use? What do you need to print?')}">${application ? esc(tr(`Aplicación: ${application}. `,`Application: ${application}. `)) : ''}</textarea></label><label class="check-label"><input type="checkbox" required><span>${tr('He leído la','I have read the')} <a href="${url('privacidad.html')}">${tr('información de privacidad','privacy information')}</a> ${tr('y deseo contactar a Rigel.','and wish to contact Rigel.')} *</span></label><button class="button primary" type="submit">${tr('Preparar correo','Prepare email')}${arrow}</button><p class="form-note">${tr('Se abrirá tu aplicación de correo con el mensaje preparado. Revisa el contenido y envíalo desde allí. Este formulario no envía ni almacena tus datos en un servidor.','Your email app will open with a prepared message. Review it and send it from there. This form does not send or store your data on a server.')}</p><p id="form-status" role="status"></p><a id="email-fallback" class="text-link" hidden>${tr('Abrir correo de nuevo','Open email again')}${arrow}</a></form></section>`;
   }
 
+  function about() {
+    return `${crumb(tr('Quiénes somos','About us'))}<section class="container about-layout"><div class="about-copy"><h1>${tr('Quiénes somos','About us')}</h1><p>${tr('Rigel es una empresa dedicada a la comercialización de equipos de marcaje y codificación. Ofrecemos soluciones para identificar productos y empaques mediante la impresión de fechas, lotes, textos, logotipos y códigos.','Rigel supplies marking and coding equipment. We offer solutions for identifying products and packaging by printing dates, batch numbers, text, logos and codes.')}</p><p>${tr('Fundada en Ecuador, Rigel tiene presencia en Colombia, Brasil, Venezuela, Chile y México. Trabajamos con empresas de distintos tamaños y sectores para encontrar una solución acorde con su proceso de producción.','Founded in Ecuador, Rigel has a presence in Colombia, Brazil, Venezuela, Chile and Mexico. We work with businesses of different sizes and industries to find a solution suited to their production process.')}</p><h2>Rigel Colombia</h2><p>${tr('En Colombia comercializamos las codificadoras M1 y RG1, junto con sus cartuchos compatibles: S70 para M1 y RCN1 para RG1. Nuestro catálogo permite revisar sus características y comparar las opciones de trabajo manual e integración a una línea.','In Colombia, we offer M1 and RG1 coding printers with their compatible cartridges: S70 for M1 and RCN1 for RG1. Our catalog lets you explore their features and compare handheld operation and line integration options.')}</p><h2>${tr('Asesoría para tu aplicación','Advice for your application')}</h2><p>${tr('Te orientamos en la selección del equipo y la tinta según el material, la información que necesitas imprimir y tu forma de trabajar. También puedes consultar sobre el uso de los equipos y sus consumibles.','We help you choose a printer and ink based on your material, the information you need to print and your workflow. You can also ask about using the equipment and its consumables.')}</p><a class="text-link" href="${url('contacto.html')}">${tr('Contactar a Rigel Colombia','Contact Rigel Colombia')}</a></div><figure class="about-photo"><img src="assets/soporte/soporte-tecnico-rigel.webp" alt="${tr('Trabajo de soporte técnico de Rigel','Technical support work at Rigel')}" width="700" height="850"><figcaption>${tr('Orientación y soporte de Rigel.','Guidance and support from Rigel.')}</figcaption></figure></section>`;
+  }
+
   function privacy() {
     return `${crumb(tr('Privacidad','Privacy'))}<article class="container policy"><p class="eyebrow">RIGEL COLOMBIA</p><h1>${tr('Tu información.','Your information.')}</h1><h2>${tr('Cómo funciona el contacto','How contact works')}</h2><p>${tr('Este sitio es un catálogo informativo. El formulario prepara un mensaje en tu aplicación de correo. No lo envía automáticamente y no guarda los campos en un servidor del sitio. Tú decides si envías el correo a Rigel.','This website is an informational catalog. The form prepares a message in your email application. It does not send it automatically or save the fields on the site’s server. You decide whether to send the email to Rigel.')}</p><p>${tr('Si envías el mensaje, Rigel recibirá la información incluida para atender tu consulta. Puedes solicitar información sobre el tratamiento de tus datos al mismo canal de contacto:','If you send the message, Rigel will receive the information included to respond to your inquiry. You can ask about the handling of your information through the same contact channel:')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>.</p><h2>${tr('Preferencia de idioma','Language preference')}</h2><p>${tr('Se guarda únicamente tu elección de español o inglés en el almacenamiento local de tu navegador. Puedes eliminarla borrando los datos del sitio. El catálogo funciona aunque este almacenamiento no esté disponible.','Only your Spanish or English preference is saved in your browser’s local storage. You can remove it by clearing the site’s data. The catalog works even when this storage is unavailable.')}</p><h2>${tr('Servicios externos','External services')}</h2><p>${tr('Los enlaces a Rigel Ecuador y WhatsApp, abren servicios externos sujetos a sus propias políticas. El proveedor de alojamiento puede procesar registros técnicos necesarios para servir la web. No se han integrado herramientas de publicidad ni analítica en este catálogo.','Links to Rigel Ecuador and WhatsApp open external services subject to their own policies. The hosting provider may process technical logs needed to serve the website. This catalog does not integrate advertising or analytics tools.')}</p></article>`;
   }
 
   function render() {
     document.documentElement.lang=language;
-    const titles={home:tr('Codificadoras y tintas para Colombia','Coding printers and inks for Colombia'),catalog:tr('Catálogo','Catalog'),product:selected ? text(selected.name) : tr('Producto','Product'),faq:tr('Preguntas frecuentes','FAQ'),guides:tr('Guías de codificación','Coding guides'),contact:tr('Contacto y soporte','Contact and support'),privacy:tr('Privacidad','Privacy')};
+    const titles={home:tr('Codificadoras y tintas para Colombia','Coding printers and inks for Colombia'),catalog:tr('Catálogo','Catalog'),product:selected ? text(selected.name) : tr('Producto','Product'),faq:tr('Preguntas frecuentes','FAQ'),guides:tr('Guías de codificación','Coding guides'),contact:tr('Contacto y soporte','Contact and support'),privacy:tr('Privacidad','Privacy'),about:tr('Quiénes somos','About us')};
     document.title=`${titles[page]||titles.home} | Rigel Colombia`;
     document.querySelector('meta[name="description"]').content=tr('Catálogo Rigel Colombia: codificadoras M1 y RG1, cartuchos S70 y RCN1. Explora características, compara equipos y solicita asesoría.','Rigel Colombia catalog: M1 and RG1 coding printers, S70 and RCN1 ink cartridges. Explore features, compare printers and get advice.');
     document.querySelector('.skip-link').textContent=tr('Ir al contenido','Skip to content');
     header();
-    const views={home,catalog,product,faq,guides:guidePage,contact,privacy};
+    const views={home,catalog,product,faq,guides:guidePage,contact,about,privacy};
     document.getElementById('main-content').innerHTML=(views[page]||home)();
     footer();
     initCarousel();
@@ -269,8 +272,6 @@
   document.addEventListener('click', event=>{
     const slideTarget=event.target.closest('[data-slide-target]');
     if(slideTarget)showSlide(Number(slideTarget.dataset.slideTarget));
-    const slideStep=event.target.closest('[data-slide-step]');
-    if(slideStep)showSlide(carouselIndex+Number(slideStep.dataset.slideStep));
     if(event.target.closest('[data-carousel-toggle]')){carouselPaused=!carouselPaused;updateCarouselToggle();if(carouselPaused)stopCarousel();else startCarousel();}
     const languageButton=event.target.closest('[data-language]');
     if(languageButton && languageButton.dataset.language!==language) {

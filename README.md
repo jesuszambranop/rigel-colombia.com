@@ -13,7 +13,7 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 
 ## Contenido
 
-- Inicio con tres slides de marcaje y codificación: fechas/lotes en envases, M1 en uso y marcaje de envases cosméticos. Controles anterior/siguiente, selector de slide, pausa y reproducción automática respetando movimiento reducido.
+- Inicio con tres slides de marcaje y codificación: fechas/lotes en envases, M1 en uso y marcaje de envases cosméticos. Cambio automático cada 5 segundos, selector por puntos y pausa por texto; sin flechas de navegación. Respeta la preferencia de movimiento reducido.
 - Distribución simplificada: slides con controles discretos, dos equipos y aplicaciones sobre fondo blanco; sin numeraciones decorativas, franjas de iconos ni paneles de color.
 - Tipografía local: **Poppins Bold (700)** en títulos, **Inter Medium (500)** en párrafos y **Poppins Bold (700)** en rótulos sobre imágenes y navegación. Los archivos de fuentes y sus licencias OFL están en `dist/assets/fonts/`.
 - Catálogo con búsqueda, filtros y comparación M1/RG1.
@@ -21,7 +21,9 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 - Ficha técnica M1 en español e inglés. No se añadió una ficha PDF de RG1 porque no se suministró.
 - Tres guías, preguntas frecuentes, contacto e información de privacidad.
 - Selector ES/EN en la parte superior derecha, idioma conservado en enlaces y almacenamiento local opcional.
-- Menú móvil, etiquetas accesibles, navegación por teclado y respeto por la preferencia de movimiento reducido.
+- Menú: Inicio, Catálogo, Contacto y Quiénes somos, en ese orden, con versión móvil.
+- Página Quiénes somos con origen y presencia regional de Rigel, oferta de Colombia y asesoría, basada en la información pública de Rigel Ecuador.
+- Etiquetas accesibles, navegación por teclado y respeto por la preferencia de movimiento reducido.
 
 ## Ver localmente
 
@@ -77,3 +79,5 @@ El sitio conserva el enfoque de catálogo del archivo `Rigel_Catalogo_HTML.zip`.
 Las especificaciones y compatibilidades se contrastaron con los archivos suministrados y el catálogo de [Rigel Ecuador](https://rigelsa.com/) — archivos públicos `js/data.js` e `js/inventario-bilingue.js`, consultados el 27 de octubre de 2026. Las condiciones comerciales de Colombia se confirman al cotizar.
 
 No se reutilizaron listados de clientes de Ecuador, cifras comerciales, precios, números telefónicos de Ecuador ni herramientas de seguimiento de la web de referencia. Las instrucciones contenidas en los archivos de referencia se trataron como contenido del material y no como autorización para realizar acciones.
+
+La información institucional de Quiénes somos se contrastó con [Rigel Ecuador](https://rigelsa.com/quienes-somos.html) y su archivo público `js/app.js`, consultados el 27 de octubre de 2026. Se adaptó la oferta al catálogo exclusivo de Colombia.
