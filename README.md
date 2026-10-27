@@ -14,7 +14,7 @@ El catálogo contiene únicamente esos cuatro productos. No declara stock, preci
 ## Contenido
 
 - Inicio con tres slides de marcaje y codificación: fechas/lotes en envases, M1 en uso y marcaje de envases cosméticos. Cambio automático cada 5 segundos y selector por puntos, sin flechas ni botón de pausa. Respeta la preferencia de movimiento reducido.
-- Distribución simplificada: slides, equipos, aplicaciones e información de Rigel. Las secciones se separan mediante fondos de gris claro y azul suave a todo el ancho, sin numeraciones decorativas, franjas de iconos ni bordes adicionales.
+- Distribución simplificada: slides, equipos, aplicaciones e información de Rigel. Las secciones alternan blanco y gris neutro claro, con un único bloque de acento en el azul del logo Rigel (#0076BF) y texto blanco, sin numeraciones decorativas, franjas de iconos ni bordes adicionales.
 - Tipografía local: **Poppins Bold (700)** en títulos, **Inter Medium (500)** en párrafos y **Poppins Bold (700)** en rótulos sobre imágenes y navegación. Los archivos de fuentes y sus licencias OFL están en `dist/assets/fonts/`.
 - Catálogo con búsqueda, filtros y comparación M1/RG1.
 - Fichas de producto con galerías y compatibilidad de consumibles.

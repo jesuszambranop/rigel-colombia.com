@@ -1,6 +1,6 @@
 @font-face{font-family:Poppins;src:url('../assets/fonts/Poppins-Bold.ttf') format('truetype');font-style:normal;font-weight:700;font-display:swap}
 @font-face{font-family:Inter;src:url('../assets/fonts/Inter-Variable.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap}
-:root{--width:1120px;--blue:#007cba;--blue-dark:#006397;--navy:#26343d;--ink:#26343d;--muted:#63717a;--line:#e7ebed;--paper:#fafbfc}
+:root{--width:1120px;--blue:#0076bf;--blue-dark:#006397;--navy:#26343d;--ink:#26343d;--muted:#63717a;--line:#e7ebed;--paper:#fafbfc}
 html{scroll-padding-top:100px}
 body,p{font-family:Inter,Arial,sans-serif;font-weight:500}
 body{font-size:15px}
@@ -56,9 +56,12 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .slide-dots button>span{height:6px;width:6px;background:#a7b4bd;border-radius:50%}
 .slide-dots button[aria-pressed=true]>span{background:var(--blue)}
 /* A short product list, without panels or repeating promotional sections. */
-.equipment-band{background:#f4f6f8}
-.applications-band{background:#e8f1f6}
-.about-band{background:#dcebf3}
+.equipment-band{background:#fff}
+.applications-band{background:#f5f5f5}
+.about-band{background:var(--blue);color:#fff}
+.about-band .home-about h2,.about-band .home-about p,.about-band .text-link{color:#fff}
+.about-band .text-link{text-decoration:underline;text-underline-offset:4px}
+.about-band a:focus-visible{outline-color:#fff}
 .simple-product-photo img,.simple-application-grid img{mix-blend-mode:multiply}
 .simple-equipment{padding-top:70px;padding-bottom:65px}
 .simple-heading{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:35px}
@@ -143,7 +146,8 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .guide-card>a img{mix-blend-mode:normal}
 .article-action{border:0}
 /* Plain contact details in the footer. */
-#site-footer{background:#fafbfc;border:0;margin-top:15px}
+#site-footer{background:#fafafa;border:0;margin-top:15px}
+body[data-page=home] #site-footer{margin-top:0}
 .footer-top{padding-block:46px;gap:60px;grid-template-columns:1.2fr 1fr 1.2fr}
 .footer-about img{width:120px}
 .footer-about p{font-size:12px;margin-top:18px;max-width:240px}
