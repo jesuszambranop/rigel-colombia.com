@@ -1,0 +1,11 @@
+{
+  "name": "rigel-colombia.com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo bilingüe Rigel Colombia, HTML, CSS y JavaScript sin frameworks",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": {"node": ">=20"}
+}
