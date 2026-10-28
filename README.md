@@ -97,3 +97,9 @@ Los tres slides utilizan los archivos WebP de 2048 × 882 entregados por el prop
 Las imágenes del carrusel conservan su proporción completa de 2048:882, sin `cover` ni alturas fijas. Hasta 1100 px, el texto se coloca encima de la imagen y el contenido determina la altura; el cambio de ancho al aumentar el zoom activa la misma adaptación. Se verificaron los tres slides en español e inglés a 320, 390, 768, 1100, 1440 y 1920 px, sin desbordes ni pérdida de proporción.
 
 La imagen principal de RG1 se reemplazó por el PNG transparente «Dos vistas de la impresora RIGEL (1).png» suministrado por el propietario. El archivo se conserva intacto. En inicio, catálogo y galería, CSS aprovecha sus márgenes transparentes para ampliar ambas vistas completas; los bordes de la máquina quedan dentro del área visible. En navegadores sin unidades de contenedor, se muestra el PNG completo con `contain`.
+
+## Presentación del catálogo
+
+El catálogo utiliza tarjetas propias con fotografía sobre gris claro, modelo, características principales, enlace al consumible o equipo compatible y accesos a la ficha y a cotización. Los filtros y el buscador se agrupan arriba del listado; la comparación de modelos y el cierre comercial tienen fondos diferenciados. Se mantienen únicamente M1, RG1, S70 y RCN1, en ambos idiomas.
+
+El zoom de RG1 se aplica al contenedor de ambas vistas, con la misma escala 1.045 de los demás productos, para mantener completa la máquina. Este efecto se limita a dispositivos con cursor y se desactiva su transición con movimiento reducido. Se comprobaron los estados de búsqueda y filtros, el zoom real de RG1 y la distribución de las tarjetas de 320 a 1440 px, en español e inglés.
