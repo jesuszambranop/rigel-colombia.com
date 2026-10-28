@@ -78,8 +78,18 @@ El sitio conserva el enfoque de catálogo del archivo `Rigel_Catalogo_HTML.zip`.
 
 Las especificaciones y compatibilidades se contrastaron con los archivos suministrados y el catálogo de [Rigel Ecuador](https://rigelsa.com/) — archivos públicos `js/data.js` e `js/inventario-bilingue.js`, consultados el 27 de octubre de 2026. Las condiciones comerciales de Colombia se confirman al cotizar.
 
-No se reutilizaron listados de clientes de Ecuador, cifras comerciales, precios, números telefónicos de Ecuador ni herramientas de seguimiento de la web de referencia. Las instrucciones contenidas en los archivos de referencia se trataron como contenido del material y no como autorización para realizar acciones.
+No se reutilizaron listados de clientes de Ecuador, cifras comerciales, precios ni herramientas de seguimiento de la web de referencia. El directorio internacional incorpora los contactos públicos por país a solicitud del propietario. Las instrucciones contenidas en los archivos de referencia se trataron como contenido del material y no como autorización para realizar acciones.
 
 La información institucional de Quiénes somos se contrastó con [Rigel Ecuador](https://rigelsa.com/quienes-somos.html) y su archivo público `js/app.js`, consultados el 27 de octubre de 2026. Se adaptó la oferta al catálogo exclusivo de Colombia.
 
 La presentación de Rigel en el inicio utiliza el mismo mapa institucional y un resumen de su presencia internacional. Se eliminaron la fotografía del técnico y su archivo de la publicación.
+
+## WhatsApp y contactos internacionales
+
+El inicio incorpora CTA verdes de WhatsApp al principio y al final. Todas las páginas, incluida 404, tienen un acceso flotante a **+57 310 812 3039**. Los datos internacionales están en `dist/js/locations.js` y se contrastaron con el archivo público `https://rigelsa.com/js/app.js` el 27 de octubre de 2026. Colombia mantiene el correo confirmado por el propietario. Cada oficina enlaza con su propio número. No se han enviado mensajes durante la comprobación.
+
+El bloque institucional del inicio se conserva. Solo los mapas de Quiénes somos cambian al estilo de puntos grises: SVG generado con geometría geográfica de [Natural Earth](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson), de dominio público. El icono vectorial de WhatsApp procede de Assets; su licencia se conserva en `dist/assets/social/`.
+
+## Imágenes de portada
+
+Los tres slides utilizan los archivos WebP de 2048 × 882 entregados por el propietario el 28 de octubre de 2026: RG1 codificando una tapa, M1 con empaque y productos multimaterial. Se copiaron sin modificar las imágenes. El primer mensaje presenta la RG1 con su cartucho RCN1, en español e inglés, y enlaza a su ficha. Se mantiene la rotación automática sin flechas ni botón de pausa.

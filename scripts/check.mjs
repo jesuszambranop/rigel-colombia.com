@@ -30,7 +30,7 @@ for(const file of htmlFiles){
     assert.ok(existsSync(join(root,path)),`${file}: missing ${path}`);
   }
 }
-for(const file of ['app.js','products.js','config.js'])new vm.Script(readFileSync(join(root,'js',file),'utf8'),{filename:file});
+for(const file of ['app.js','products.js','config.js','locations.js'])new vm.Script(readFileSync(join(root,'js',file),'utf8'),{filename:file});
 for(const file of readdirSync(join(root,'css')).filter(name=>name.endsWith('.css'))){
   const css=readFileSync(join(root,'css',file),'utf8');
   for(const match of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)){

@@ -26,6 +26,33 @@
   let catalogType = ['printer','ink'].includes(params.get('tipo')) ? params.get('tipo') : 'all';
   let catalogSearch = '';
 
+  function whatsappLink(label,cls='whatsapp-cta',number=config.whatsapp) {
+    return `<a class="${cls}" href="https://wa.me/${esc(number)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(label)} · WhatsApp"><img src="assets/social/whatsapp.svg" alt="" width="22" height="24"><span>${esc(label)}</span></a>`;
+  }
+
+  function addFloatingWhatsApp() {
+    if(!config.whatsapp || document.getElementById('whatsapp-floating'))return;
+    const link=document.createElement('a');
+    link.id='whatsapp-floating';link.className='whatsapp-floating';
+    link.href=`https://wa.me/${config.whatsapp}`;link.target='_blank';link.rel='noopener noreferrer';
+    link.setAttribute('aria-label',tr('Contáctanos por WhatsApp','Contact us on WhatsApp'));
+    link.innerHTML=`<img src="assets/social/whatsapp.svg" alt="" width="31" height="35"><span class="sr-only">WhatsApp</span>`;
+    document.body.appendChild(link);
+  }
+
+  function homeContactCta() {
+    return `<section class="home-contact-cta"><div class="container"><div><h2>${tr('Atención comercial para Colombia','Sales inquiries for Colombia')}</h2><p>${tr('Consulta equipos, cartuchos y cotizaciones por WhatsApp.','Ask about printers, cartridges and quotations on WhatsApp.')}</p></div>${whatsappLink(tr('Contáctanos','Contact us'))}</div></section>`;
+  }
+
+  function phoneLink(phone,cls='country-phone') {
+    return `<a class="${cls}" href="tel:+${String(phone).replace(/\D/g,'')}">${esc(phone)}</a>`;
+  }
+
+  function countryContacts() {
+    const locations=window.RIGEL_LOCATIONS||[];
+    return `<section class="international-presence country-directory"><div class="container"><h2>${tr('Países y contactos','Countries and contacts')}</h2><p class="country-directory-intro">${tr('Encuentra los datos de Rigel en cada país.','Find Rigel’s contact details in each country.')}</p><div class="country-contact-grid">${locations.map(location=>`<article class="country-contact-card" data-country="${location.id}"><header><div><h3>${text(location.name)}</h3>${location.id==='colombia'?`<p>${tr('Atención comercial','Sales inquiries')}</p>`:''}</div><img class="country-card-map" src="assets/paises/${location.id}-halftone.svg" alt="" width="95" height="110" loading="lazy"></header><div class="country-contact-body">${location.offices?`<div class="country-offices">${location.offices.map(office=>`<div class="country-office"><h4>${office.name}</h4>${phoneLink(office.phone)}<p>${text(office.address)}</p></div>`).join('')}</div>`:`${phoneLink(location.phone)}${location.additionalPhone?`<p class="additional-phone">${tr('Atención adicional','Additional contact')}: ${phoneLink(location.additionalPhone,'')}</p>`:''}${location.address?`<p class="country-address">${text(location.address)}</p>`:''}`}${location.email?`<a class="country-email" href="mailto:${esc(location.email)}">${esc(location.email)}</a>`:''}<p class="country-hours"><strong>${tr('Horario','Hours')}</strong>${tr('Lunes a viernes, 08:30–17:30. Sábados, 08:30–13:00.','Monday to Friday, 08:30–17:30. Saturday, 08:30–13:00.')}</p>${location.website?`<a class="country-website" href="${esc(location.website)}" target="_blank" rel="noopener noreferrer">${esc(new URL(location.website).hostname)}</a>`:''}</div><div class="country-card-actions">${location.offices?location.offices.map(office=>whatsappLink(`WhatsApp ${office.name}`,'whatsapp-cta country-whatsapp',office.whatsapp)).join(''):whatsappLink('WhatsApp','whatsapp-cta country-whatsapp',location.whatsapp)}</div></article>`).join('')}</div></div></section>`;
+  }
+
   function header() {
     const nav = [
       ['index.html',tr('Inicio','Home'),'home'],
@@ -62,18 +89,18 @@
 
   const homeSlides = [
     {
-      image: 'assets/slides/marcaje-fechas-lotes.webp', kind: 'marking',
-      alt: ['Marcaje de fechas y lote sobre la tapa de un envase de vidrio','Date and batch marking on a glass container lid'],
-      label: ['MARCAJE Y CODIFICACIÓN','MARKING & CODING'],
-      title: ['Marcaje y<br>codificación.','Marking<br>and coding.'],
-      description: ['Imprime fechas, lotes y códigos en tus productos. Conoce las soluciones de Rigel para Colombia.','Print dates, batches and codes on your products. Explore Rigel’s solutions for Colombia.'],
-      cta: ['Explorar codificadoras','Explore coding printers'],
-      href: () => url('catalogo.html',{tipo:'printer'}),
-      tab: ['Fechas y lotes','Dates & batches'],
-      caption: ['Identificación en cada empaque','Identification on every package']
+      image: 'assets/slides/rg1-marcaje-tapa.webp', kind: 'marking',
+      alt: ['Codificadora RG1 marcando fechas y lote sobre la tapa de un envase de vidrio','RG1 coding printer marking dates and a batch number on a glass container lid'],
+      label: ['RG1 · MARCAJE Y CODIFICACIÓN','RG1 · MARKING & CODING'],
+      title: ['RG1: marcaje y<br>codificación.','RG1: marking<br>and coding.'],
+      description: ['Imprime fechas, lotes y códigos en tapas y envases con la RG1 y su cartucho RCN1.','Print dates, batches and codes on lids and containers with the RG1 and its RCN1 cartridge.'],
+      cta: ['Conocer la RG1','Explore the RG1'],
+      href: () => productUrl('rg1'),
+      tab: ['RG1: fechas y lotes','RG1: dates & batches'],
+      caption: ['RG1 + cartucho RCN1','RG1 + RCN1 cartridge']
     },
     {
-      image: 'assets/slides/codificacion-manual-m1.webp', kind: 'handheld',
+      image: 'assets/slides/m1-codificacion-empaque.webp', kind: 'handheld',
       alt: ['Codificadora M1 utilizada con una mano sobre un empaque','M1 coding printer used with one hand on packaging'],
       label: ['CODIFICADORA PORTÁTIL M1','M1 HANDHELD CODING PRINTER'],
       title: ['Codificadora<br>portátil M1.','M1 handheld<br>coding printer.'],
@@ -84,8 +111,8 @@
       caption: ['M1 + cartucho S70','M1 + S70 cartridge']
     },
     {
-      image: 'assets/slides/marcaje-envases.webp', kind: 'packaging',
-      alt: ['Envases cosméticos como ejemplo de superficies para marcaje','Cosmetic containers as examples of marking surfaces'],
+      image: 'assets/slides/codificacion-multimaterial.webp', kind: 'packaging',
+      alt: ['Productos con fechas y lotes impresos en botellas, cajas y envases cosméticos','Products with printed dates and batches on bottles, cartons and cosmetic containers'],
       label: ['TU PRODUCTO. TU APLICACIÓN.','YOUR PRODUCT. YOUR APPLICATION.'],
       title: ['Identifica<br>tus envases.','Identify<br>your packaging.'],
       description: ['Vidrio, plástico, cartón o metal. Revisemos tu superficie y el mensaje que necesitas imprimir.','Glass, plastic, cardboard or metal. Let’s review your material and the message you need to print.'],
@@ -105,7 +132,11 @@
     {id:'mexico',name:['México','Mexico']}
   ];
 
-  function presenceMap() {
+  function presenceMap(dotted=false) {
+    if(dotted) {
+      const positions={"mexico": [23.51, 15.19], "colombia": [52.5, 31.87], "ecuador": [47.94, 36.62], "venezuela": [60.78, 28.45], "brasil": [76.31, 46.4], "chile": [55.6, 62.97]};
+      return `<figure class="presence-map presence-map--halftone"><img src="assets/nosotros/mapa-latinoamerica-halftone.svg" alt="${tr('Mapa de presencia internacional de Rigel en Latinoamérica, en puntos grises','Rigel’s international presence in Latin America, shown as a gray dot map')}" width="820" height="1000"><div class="presence-labels" aria-hidden="true">${internationalCountries.map(country=>`<span class="presence-label" style="left:${positions[country.id][0]}%;top:${positions[country.id][1]}%">${text(country.name)}</span>`).join('')}</div></figure>`;
+    }
     return `<figure class="presence-map"><img src="assets/nosotros/mapa-america.webp" alt="${tr('Mapa de la presencia de Rigel en Ecuador, Colombia, Brasil, Venezuela, Chile y México','Map of Rigel’s presence in Ecuador, Colombia, Brazil, Venezuela, Chile and Mexico')}" width="985" height="1080"><div class="presence-labels" aria-hidden="true">${internationalCountries.map(country=>`<span class="presence-label presence-label--${country.id}">${text(country.name)}</span>`).join('')}</div></figure>`;
   }
 
@@ -114,8 +145,8 @@
   }
 
   function about() {
-    return `${crumb(tr('Quiénes somos','About us'))}<section class="container international-page-intro"><div class="international-page-map">${presenceMap()}</div><div class="international-page-copy"><p class="eyebrow">${tr('RIGEL INTERNACIONAL','RIGEL INTERNATIONAL')}</p><h1>${tr('Quiénes somos','About us')}</h1><p class="international-lead">${tr('Somos una empresa internacional dedicada a la comercialización de equipos de marcaje y codificación.','We are an international company supplying marking and coding equipment.')}</p><p>${tr('Ofrecemos soluciones para pequeñas, medianas y grandes empresas que necesitan identificar sus productos y empaques con fechas, lotes, textos, logotipos y códigos.','We offer solutions for small, medium and large businesses that need to identify their products and packaging with dates, batch numbers, text, logos and codes.')}</p><p>${tr('Fundada en Ecuador, Rigel ha desarrollado su presencia en Colombia, Brasil, Venezuela, Chile y México. Esta presencia internacional conecta nuestra experiencia en codificación con las necesidades comerciales de cada mercado.','Founded in Ecuador, Rigel has developed a presence in Colombia, Brazil, Venezuela, Chile and Mexico. This international presence connects our coding experience with the commercial needs of each market.')}</p></div></section>
-      <section class="international-presence"><div class="container"><h2>${tr('Presencia internacional','International presence')}</h2><ul class="country-presence-grid">${internationalCountries.map(country=>`<li data-country="${country.id}"><img src="assets/paises/${country.id}.svg" alt="" width="70" height="75"><div><h3>${text(country.name)}</h3>${country.id==='ecuador'?`<p>${tr('País de origen','Country of origin')}</p>`:''}</div></li>`).join('')}</ul></div></section>
+    return `${crumb(tr('Quiénes somos','About us'))}<section class="container international-page-intro"><div class="international-page-map">${presenceMap(true)}</div><div class="international-page-copy"><p class="eyebrow">${tr('RIGEL INTERNACIONAL','RIGEL INTERNATIONAL')}</p><h1>${tr('Quiénes somos','About us')}</h1><p class="international-lead">${tr('Somos una empresa internacional dedicada a la comercialización de equipos de marcaje y codificación.','We are an international company supplying marking and coding equipment.')}</p><p>${tr('Ofrecemos soluciones para pequeñas, medianas y grandes empresas que necesitan identificar sus productos y empaques con fechas, lotes, textos, logotipos y códigos.','We offer solutions for small, medium and large businesses that need to identify their products and packaging with dates, batch numbers, text, logos and codes.')}</p><p>${tr('Fundada en Ecuador, Rigel ha desarrollado su presencia en Colombia, Brasil, Venezuela, Chile y México. Esta presencia internacional conecta nuestra experiencia en codificación con las necesidades comerciales de cada mercado.','Founded in Ecuador, Rigel has developed a presence in Colombia, Brazil, Venezuela, Chile and Mexico. This international presence connects our coding experience with the commercial needs of each market.')}</p></div></section>
+      ${countryContacts()}
       <section class="international-colombia"><div class="container colombia-commercial"><div><h2>${tr('Rigel en Colombia','Rigel in Colombia')}</h2><p>${tr('Nuestra oferta comercial en Colombia incluye las codificadoras M1 y RG1, con sus cartuchos compatibles S70 y RCN1. Consulta las características, la disponibilidad y las condiciones comerciales con nuestro canal de atención para Colombia.','Our Colombia range includes M1 and RG1 coding printers with their compatible S70 and RCN1 cartridges. Ask our Colombia sales channel about product features, availability and commercial terms.')}</p><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo de Colombia','View the Colombia catalog')}</a></div><div class="colombia-sales"><span>${tr('Atención comercial Colombia','Colombia sales inquiries')}</span><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div></section>`;
   }
 
@@ -123,15 +154,15 @@
     return `<section class="home-carousel" aria-label="${tr('Marcaje y codificación Rigel Colombia','Rigel Colombia marking and coding')}" aria-roledescription="${tr('carrusel','carousel')}">
       <h1 class="sr-only">${tr('Marcaje y codificación en Colombia. Codificadoras M1 y RG1.','Marking and coding in Colombia. M1 and RG1 coding printers.')}</h1>
       <div class="slide-stage">${homeSlides.map((slide,i)=>`<div id="home-slide-${i}" class="home-slide slide--${slide.kind}" role="group" aria-roledescription="${tr('diapositiva','slide')}" aria-label="${i+1} ${tr('de','of')} ${homeSlides.length}" ${i ? 'hidden' : ''}>
-        <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2793" height="1204" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
-        <div class="container slide-layout"><div class="slide-copy"><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p>${link(slide.href(),text(slide.cta),'button primary slide-cta')}</div></div>
+        <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2048" height="882" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
+        <div class="container slide-layout"><div class="slide-copy"><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p><div class="slide-actions">${link(slide.href(),text(slide.cta),'button primary slide-cta')}${whatsappLink(tr('Contáctanos','Contact us'))}</div></div></div>
       </div>`).join('')}
       <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
   }
 
   function home() {
     return `${homeCarousel()}<section class="home-band equipment-band" id="equipos"><div class="container simple-equipment"><div class="simple-heading"><h2>${tr('Codificadoras','Coding printers')}</h2><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo','View catalog')}</a></div><div class="simple-product-grid">${products.filter(p=>p.type==='printer').map(p=>`<article class="simple-product"><a class="simple-product-photo" href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true"><img src="${p.image}" alt="" width="800" height="650" loading="lazy"></a><h3><a href="${productUrl(p.id)}">${p.model}</a></h3><p>${p.id==='m1'?tr('Codificadora portátil con pantalla táctil de 3,5 pulgadas.','Handheld coding printer with a 3.5-inch touchscreen.'):tr('Codificadora con pantalla de 4,3 pulgadas para uso manual o integrado a una línea.','Coding printer with a 4.3-inch display for handheld or inline use.')}</p><p class="simple-product-ink">${tr('Cartucho compatible:','Compatible cartridge:')} <a href="${productUrl(p.ink)}">${p.ink.toUpperCase()}</a></p><a class="text-link" href="${productUrl(p.id)}">${tr('Ver','View')} ${p.model}</a></article>`).join('')}</div><a class="text-link compare-link" href="${url('catalogo.html')}#comparar">${tr('Comparar modelos','Compare models')}</a></div></section>
-      <section class="home-band applications-band" id="aplicaciones"><div class="container simple-applications"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></div></section>${internationalHome()}`;
+      <section class="home-band applications-band" id="aplicaciones"><div class="container simple-applications"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></div></section>${internationalHome()}${homeContactCta()}`;
   }
 
   function supportBlock() {
@@ -263,6 +294,7 @@
     const views={home,catalog,product,faq,guides:guidePage,contact,about,privacy};
     document.getElementById('main-content').innerHTML=(views[page]||home)();
     footer();
+    addFloatingWhatsApp();
     initCarousel();
     if(page==='catalog') updateCatalog();
     document.getElementById('contact-form')?.addEventListener('submit', event=>{
