@@ -21,8 +21,8 @@ window.RIGEL_PRODUCTS = [
     sheet: ['assets/productos/m1/ficha-tecnica.pdf','assets/productos/m1/technical-data-sheet.pdf']
   },
   {
-    id: 'rg1', model: 'RG1', type: 'printer', ink: 'rcn1', image: 'assets/productos/rg1/codificadora-portatil-rg1-rigel.webp',
-    gallery: ['assets/productos/rg1/codificadora-portatil-rg1-rigel.webp','assets/productos/rg1/codificadora-rg1-fechas-lotes-codigos.webp','assets/productos/rg1/kit-codificadora-rg1-maletin-accesorios.webp'],
+    id: 'rg1', model: 'RG1', type: 'printer', ink: 'rcn1', image: 'assets/productos/rg1/principal-dos-vistas.png',
+    gallery: ['assets/productos/rg1/principal-dos-vistas.png','assets/productos/rg1/codificadora-rg1-fechas-lotes-codigos.webp','assets/productos/rg1/kit-codificadora-rg1-maletin-accesorios.webp'],
     name: ['Codificadora RG1','RG1 coding printer'], family: ['Manual y automática','Handheld and inline'],
     summary: ['De tu mano a tu línea de producción.','From your hand to your production line.'],
     description: ['Codificadora tipo pistola con pantalla de alta definición de 4,3 pulgadas y puerto para fotosensor. Trabaja de forma manual o se integra a una banda transportadora con la configuración adecuada.','A handheld gun-style coding printer with a 4.3-inch high-definition display and a photoelectric sensor port. Operate it by hand or integrate it into a conveyor with the appropriate setup.'],

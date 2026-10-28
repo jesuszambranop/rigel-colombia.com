@@ -93,3 +93,7 @@ El bloque institucional del inicio se conserva. Solo los mapas de Quiénes somos
 ## Imágenes de portada
 
 Los tres slides utilizan los archivos WebP de 2048 × 882 entregados por el propietario el 28 de octubre de 2026: RG1 codificando una tapa, M1 con empaque y productos multimaterial. Se copiaron sin modificar las imágenes. El primer mensaje presenta la RG1 con su cartucho RCN1, en español e inglés, y enlaza a su ficha. Se mantiene la rotación automática sin flechas ni botón de pausa.
+
+Las imágenes del carrusel conservan su proporción completa de 2048:882, sin `cover` ni alturas fijas. Hasta 1100 px, el texto se coloca encima de la imagen y el contenido determina la altura; el cambio de ancho al aumentar el zoom activa la misma adaptación. Se verificaron los tres slides en español e inglés a 320, 390, 768, 1100, 1440 y 1920 px, sin desbordes ni pérdida de proporción.
+
+La imagen principal de RG1 se reemplazó por el PNG transparente «Dos vistas de la impresora RIGEL (1).png» suministrado por el propietario. El archivo se conserva intacto. En inicio, catálogo y galería, CSS aprovecha sus márgenes transparentes para ampliar ambas vistas completas; los bordes de la máquina quedan dentro del área visible. En navegadores sin unidades de contenedor, se muestra el PNG completo con `contain`.

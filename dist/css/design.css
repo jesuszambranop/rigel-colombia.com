@@ -37,10 +37,10 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 .menu-toggle{width:35px}
 /* Photos and copy, with small functional slideshow controls. */
 .home-carousel{background:#f3f4f5}
-.slide-stage{height:510px;position:relative;overflow:hidden}
-.home-slide{position:absolute;inset:0;overflow:hidden}
-.slide-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
-.slide-layout{height:100%;display:flex;align-items:center;position:relative}
+.slide-stage{position:relative}
+.home-slide{position:relative}
+.slide-image{display:block;width:100%;height:auto;aspect-ratio:2048/882;object-fit:contain}
+.slide-layout{position:absolute;inset:0;height:100%;display:flex;align-items:center}
 .slide-copy{width:520px;max-width:49%;padding-bottom:10px}
 .slide-copy h2{font-size:52px;line-height:1.17;margin-bottom:24px;color:#26343d;font-weight:700;letter-spacing:-.025em}
 .slide-description{font-size:15px;color:#53636e;line-height:1.85;max-width:390px;margin-bottom:27px}
@@ -156,11 +156,10 @@ body[data-page=home] #site-footer{margin-top:0}
 .footer-top h2{font-family:Poppins,Arial,sans-serif;font-weight:700;font-size:12px}
 .footer-top>div:not(:first-child)>a{font-size:11px}
 .footer-bottom{border:0;font-size:9px;padding-top:0;padding-bottom:24px}
-@media(min-width:1600px){.slide-stage{height:550px}}
+
 @media(max-width:1200px){
   .container{width:calc(100% - 64px)}
   .brand>span{display:none}
-  .slide-stage{height:490px}
   .slide-copy h2{font-size:46px}
   .slide--packaging .slide-copy h2{font-size:45px}
   .slide-description{font-size:14px;max-width:350px}
@@ -190,14 +189,10 @@ body[data-page=home] #site-footer{margin-top:0}
   #main-nav{top:74px;border:0;box-shadow:none;padding:10px 20px 18px;margin:0}
   #main-nav a{font-size:14px;padding:14px 0}
   .language-switch button{font-size:10px;padding:10px 2px;min-width:23px}
-  .slide-stage{height:630px}
   .slide-layout{align-items:flex-start}
   .slide-copy,.slide--handheld .slide-copy{max-width:100%;width:100%;padding-top:36px}
   .slide-copy h2,.slide--packaging .slide-copy h2{font-size:39px;margin-bottom:20px;line-height:1.2}
   .slide-description{font-size:13px;max-width:430px;margin-bottom:23px}
-  .slide-image,.slide--handheld .slide-image{top:auto;left:0;bottom:0;width:100%;height:315px;object-position:88% center}
-  .slide--handheld .slide-image{object-fit:cover;object-position:86% center}
-  .slide--packaging .slide-image{object-position:84% center}
   .carousel-controls{bottom:11px}
   .carousel-tools{gap:8px}
   .carousel-tools>button{width:25px;height:30px}
@@ -244,11 +239,9 @@ body[data-page=home] #site-footer{margin-top:0}
   .brand>span{display:none}
   #main-nav{top:70px}
   .header-actions{gap:11px}
-  .slide-stage{height:590px}
   .slide-copy,.slide--handheld .slide-copy{padding-top:31px}
   .slide-copy h2,.slide--packaging .slide-copy h2{font-size:34px;line-height:1.22;margin-bottom:18px}
   .slide-description{font-size:12px;line-height:1.85;max-width:330px;margin-bottom:22px}
-  .slide-image,.slide--handheld .slide-image{height:285px}
   .slide-cta{font-size:11px;min-height:42px;padding:11px 20px}
   .simple-product-grid{grid-template-columns:1fr;gap:35px}
   .simple-product-photo{height:260px;margin-bottom:19px}
@@ -452,7 +445,6 @@ body[data-page=about] #site-footer{margin-top:0}
   .country-office>p{font-size:12px}
 }
 @media(max-width:760px){
-  .slide-stage{height:690px}
   .slide-copy,.slide--handheld .slide-copy{padding-top:32px}
   .slide-actions .whatsapp-cta{font-size:12px;min-height:44px;padding:12px 18px}
   .slide-actions .whatsapp-cta img{width:19px;height:21px}
@@ -472,7 +464,6 @@ body[data-page=about] #site-footer{margin-top:0}
   .footer-bottom{padding-bottom:85px}
 }
 @media(max-width:480px){
-  .slide-stage{height:655px}
   .slide-actions{gap:11px}
   .slide-actions .whatsapp-cta{font-size:11px;min-height:42px;padding:11px 17px}
   .slide-actions .whatsapp-cta img{width:18px;height:20px}
@@ -487,4 +478,23 @@ body[data-page=about] #site-footer{margin-top:0}
   .country-contact-body .country-address{font-size:12px}
   .country-card-actions{gap:10px}
   .country-whatsapp{font-size:10px;padding-inline:12px}
+}
+
+/* Full image proportions at every width; stacked copy when space is limited. */
+@media(max-width:1100px){
+  .home-slide:not([hidden]){display:flex;flex-direction:column}
+  .slide-layout{position:static;inset:auto;height:auto;order:-1;padding-block:32px 28px}
+  .slide-copy,.slide--handheld .slide-copy{width:100%;max-width:100%;padding:0}
+  .slide-copy h2,.slide--packaging .slide-copy h2{font-size:clamp(28px,4.3vw,42px);margin-bottom:18px}
+  .slide-description{max-width:560px;font-size:14px;margin-bottom:22px}
+  .slide-actions{flex-wrap:wrap}
+  .carousel-controls{position:static;padding-block:9px;inset:auto}
+}
+/* Remove only the PNG's transparent margins in the layout, retaining both complete views. */
+.rg1-art{display:block;width:100%;height:100%}
+.rg1-art>img{width:100%;height:100%;object-fit:contain}
+@supports(height:1cqh){
+  .simple-product-photo:has(.rg1-art),.product-image>a:has(.rg1-art),.gallery-main:has(.rg1-art){container-type:size}
+  .rg1-art:has(>img[src$="principal-dos-vistas.png"]){position:relative;width:auto;height:min(96cqh,93.4cqw);aspect-ratio:959/934;overflow:hidden;flex:none}
+  .rg1-art>img[src$="principal-dos-vistas.png"]{position:absolute;left:-37.435%;top:-.857%;width:168.718%;height:104.069%;max-width:none;max-height:none;padding:0;object-fit:fill;transform:none;mix-blend-mode:normal}
 }
