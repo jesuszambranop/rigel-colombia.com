@@ -100,6 +100,6 @@ La imagen principal de RG1 se reemplazó por el PNG transparente «Dos vistas de
 
 ## Presentación del catálogo
 
-El catálogo utiliza tarjetas propias con fotografía sobre gris claro, modelo, características principales, enlace al consumible o equipo compatible y accesos a la ficha y a cotización. Los filtros y el buscador se agrupan arriba del listado; la comparación de modelos y el cierre comercial tienen fondos diferenciados. Se mantienen únicamente M1, RG1, S70 y RCN1, en ambos idiomas.
+El catálogo comienza directamente con filtros y productos, sin bloque de presentación ni texto de portafolio. Las fotografías sobre gris claro se acompañan de modelo, características y compatibilidad en una composición abierta, sin marcos de tarjeta, insignias repetidas ni recuadros de compatibilidad. Todos los elementos del contenido tienen esquinas rectas; el CTA sobre el fondo azul de contacto tiene fondo blanco sólido. Se mantienen únicamente M1, RG1, S70 y RCN1, en ambos idiomas.
 
 El zoom de RG1 se aplica al contenedor de ambas vistas, con la misma escala 1.045 de los demás productos, para mantener completa la máquina. Este efecto se limita a dispositivos con cursor y se desactiva su transición con movimiento reducido. Se comprobaron los estados de búsqueda y filtros, el zoom real de RG1 y la distribución de las tarjetas de 320 a 1440 px, en español e inglés.
