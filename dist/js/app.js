@@ -81,11 +81,16 @@
     return `<article class="product-card ${p.type==='ink' ? 'ink-card' : ''}"><div class="product-image"><span class="product-index">0${index+1} / ${tr(p.type==='ink'?'CONSUMIBLE':'EQUIPO',p.type==='ink'?'CONSUMABLE':'PRINTER')}</span><a href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true">${artwork(p,`<img src="${p.image}" alt="" width="1618" height="972" loading="lazy">`)}</a><span class="image-model" aria-hidden="true">${p.model}</span></div><div class="product-content"><p class="eyebrow">${text(p.family)}</p><a class="product-title" href="${productUrl(p.id)}"><h3>${text(p.name)}</h3><span>${arrow}</span></a><p>${text(p.summary)}</p><div class="product-card-bottom"><span>${p.type==='printer' ? tr('Cartucho compatible','Compatible cartridge') : tr('Equipo compatible','Compatible printer')} <strong>${p.type==='printer' ? p.ink.toUpperCase() : p.printer.toUpperCase()}</strong></span><a class="text-link" href="${productUrl(p.id)}">${tr('Explorar','Explore')}${arrow}</a></div></div></article>`;
   }
 
-  const applications = [
-    ['alimentos.webp',['Alimentos','Food'],['Fechas y lotes en empaques.','Dates and batches on packaging.']],
-    ['bebidas.webp',['Bebidas','Beverages'],['Identificación en botellas y envases.','Identification on bottles and containers.']],
-    ['farmaceutica.webp',['Farmacéutica','Pharmaceutical'],['Códigos en cajas y envases.','Codes on cartons and containers.']],
-    ['latas.webp',['Industria y empaques','Industry & packaging'],['Marcaje en metal, cartón y plástico.','Marking on metal, cardboard and plastic.']]
+  const materialApplications = [
+    {image:'tapas.png',title:['Tapas y cierres','Lids and closures'],description:['Fechas de elaboración, vencimiento y lote sobre la tapa del envase. La información visible desde el primer vistazo.','Production dates, expiry dates and batch numbers on container lids. Product information visible at a glance.'],alt:['Fechas y lote impresos en la tapa blanca de un frasco de conservas','Dates and batch number printed on the white lid of a preserved-food jar']},
+    {image:'empaques-flexibles.png',title:['Empaques flexibles','Flexible packaging'],description:['Identifica bolsas y empaques alimentarios con fechas y lotes, aprovechando el espacio disponible en su superficie.','Identify food pouches and flexible packaging with dates and batch numbers, using the space available on their surface.'],alt:['Bolsa alimentaria con fecha de elaboración, caducidad y lote','Food pouch with production date, expiry date and batch number']},
+    {image:'envases-vidrio.png',title:['Envases de vidrio','Glass containers'],description:['Códigos sobre botellas y frascos de alimentos. Fechas y lotes para acompañar la identificación de cada envase.','Codes on food bottles and jars. Dates and batch numbers to support the identification of each container.'],alt:['Botella de kétchup de vidrio con fechas y código de lote','Glass ketchup bottle with dates and a batch code']},
+    {image:'botellas-plastico.png',title:['Botellas de plástico','Plastic bottles'],description:['Marcaje de fechas y lotes en envases de bebidas. Revisamos el material y la zona de impresión de tu botella.','Date and batch marking on beverage containers. We review your bottle material and the area to be printed.'],alt:['Botella plástica de zumo con fechas y lote visibles','Plastic juice bottle with visible dates and batch number']},
+    {image:'cables.png',title:['Cubiertas de cables','Cable jackets'],description:['Referencias, calibre y lote sobre el recubrimiento del cable. Consulta la tinta y el contraste adecuados para tu material.','References, cable size and batch numbers on the outer jacket. Ask about the ink and contrast suited to your material.'],alt:['Cable eléctrico negro con identificación impresa en blanco','Black electrical cable with white printed identification']},
+    {image:'frascos-cosmeticos.png',title:['Frascos cosméticos','Cosmetic bottles'],description:['Fechas y lotes en frascos de vidrio para cosméticos. Identificación del producto sin depender de una etiqueta adicional.','Dates and batch numbers on glass cosmetic bottles. Product identification without relying on an additional label.'],alt:['Frasco ámbar de sérum con fechas y lote impresos','Amber serum bottle with printed dates and batch number']},
+    {image:'empaques-vacio.png',title:['Empaques al vacío','Vacuum packaging'],description:['Fechas de empaque, vencimiento y lote en el exterior de la bolsa. Información para identificar cada presentación.','Packing dates, expiry dates and batch numbers on the outside of the bag. Information to identify each packaged product.'],alt:['Lomo de cerdo en empaque al vacío con fechas y lote en la bolsa','Vacuum-packed pork loin with dates and batch number on the bag']},
+    {image:'madera.png',title:['Madera','Wood'],description:['Identificación de lotes, medidas y piezas sobre madera. Referencias para organizar y reconocer tu producción.','Batch numbers, dimensions and part identification on wood. References to organize and identify your production.'],alt:['Tablas de pino con medidas, lote y número de pieza impresos','Pine boards with printed dimensions, batch and part number']},
+    {image:'tuberias-pvc.png',title:['Tuberías de PVC','PVC pipes'],description:['Marcaje de diámetros, referencias y lotes en tuberías. Datos visibles para identificar cada pieza durante su manejo.','Diameters, references and batch numbers on pipes. Visible information to identify each piece during handling.'],alt:['Tuberías grises de PVC con diámetro y código de lote impresos','Gray PVC pipes with printed diameter and batch code']}
   ];
 
   const homeSlides = [
@@ -161,9 +166,50 @@
       <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
   }
 
+  function materialsCarousel() {
+    return `<section class="home-band applications-band materials-section" id="aplicaciones" aria-labelledby="applications-heading" aria-roledescription="${tr('carrusel','carousel')}"><div class="container"><header class="materials-heading"><h2 id="applications-heading">${tr('Aplicaciones en distintos materiales','Applications across different materials')}</h2><p>${tr('Fechas, lotes y códigos para identificar tus productos.','Dates, batch numbers and codes to identify your products.')}</p></header><div class="material-stage">${materialApplications.map((material,i)=>`<article class="material-slide" id="material-slide-${i}" role="group" aria-roledescription="${tr('diapositiva','slide')}" aria-label="${i+1} ${tr('de','of')} ${materialApplications.length}" ${i?'hidden':''}><div class="material-copy"><h3>${text(material.title)}</h3><p>${text(material.description)}</p><a class="text-link" href="${url('contacto.html',{aplicacion:text(material.title)})}">${tr('Consultar este material','Ask about this material')}</a></div><img class="material-image" src="assets/aplicaciones/materiales/${material.image}" alt="${text(material.alt)}" width="1254" height="1254" loading="lazy"></article>`).join('')}</div><div class="material-navigation"><div class="material-dots" role="group" aria-label="${tr('Seleccionar material','Select material')}">${materialApplications.map((material,i)=>`<button type="button" data-material-target="${i}" aria-controls="material-slide-${i}" aria-pressed="${i===0}" aria-label="${text(material.title)}"><span aria-hidden="true"></span></button>`).join('')}</div><span class="material-counter" id="material-counter" aria-hidden="true">01 / 09</span></div><p class="material-note">${tr('Cuéntanos qué material necesitas marcar para revisar la tinta y realizar una prueba de impresión.','Tell us which material you need to mark so we can review the ink and arrange a print test.')}</p><span class="sr-only" id="material-announcement" role="status"></span></div></section>`;
+  }
+
   function home() {
-    return `${homeCarousel()}<section class="home-band equipment-band" id="equipos"><div class="container simple-equipment"><div class="simple-heading"><h2>${tr('Codificadoras','Coding printers')}</h2><a class="text-link" href="${url('catalogo.html')}">${tr('Ver catálogo','View catalog')}</a></div><div class="simple-product-grid">${products.filter(p=>p.type==='printer').map(p=>`<article class="simple-product"><a class="simple-product-photo" href="${productUrl(p.id)}" tabindex="-1" aria-hidden="true">${artwork(p,`<img src="${p.image}" alt="" width="1618" height="972" loading="lazy">`)}</a><h3><a href="${productUrl(p.id)}">${p.model}</a></h3><p>${p.id==='m1'?tr('Codificadora portátil con pantalla táctil de 3,5 pulgadas.','Handheld coding printer with a 3.5-inch touchscreen.'):tr('Codificadora con pantalla de 4,3 pulgadas para uso manual o integrado a una línea.','Coding printer with a 4.3-inch display for handheld or inline use.')}</p><p class="simple-product-ink">${tr('Cartucho compatible:','Compatible cartridge:')} <a href="${productUrl(p.ink)}">${p.ink.toUpperCase()}</a></p><a class="text-link" href="${productUrl(p.id)}">${tr('Ver','View')} ${p.model}</a></article>`).join('')}</div><a class="text-link compare-link" href="${url('catalogo.html')}#comparar">${tr('Comparar modelos','Compare models')}</a></div></section>
-      <section class="home-band applications-band" id="aplicaciones"><div class="container simple-applications"><h2>${tr('Aplicaciones','Applications')}</h2><p>${tr('Fechas, lotes y códigos sobre diferentes empaques y materiales.','Dates, batches and codes on different packaging and materials.')}</p><div class="simple-application-grid">${applications.map(([img,title,desc])=>`<a href="${url('contacto.html',{aplicacion:text(title)})}"><img src="assets/aplicaciones/${img}" alt="${text(desc)}" width="600" height="500" loading="lazy"><h3>${text(title)}</h3></a>`).join('')}</div><p class="simple-material-note">${tr('Consulta la tinta adecuada para tu material y solicita una prueba de impresión.','Ask about the right ink for your material and a print test.')}</p></div></section>${internationalHome()}${homeContactCta()}`;
+    return `${homeCarousel()}${materialsCarousel()}${internationalHome()}${homeContactCta()}`;
+  }
+
+  let materialIndex=0;
+  let materialTimer=null;
+  let materialVisible=!('IntersectionObserver' in window);
+  function stopMaterials() {
+    if(materialTimer!==null)window.clearInterval(materialTimer);
+    materialTimer=null;
+  }
+  function startMaterials() {
+    stopMaterials();
+    if(page!=='home'||document.hidden||!materialVisible||document.activeElement?.closest('.materials-section a')||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)return;
+    materialTimer=window.setInterval(()=>showMaterial(materialIndex+1,false),5000);
+  }
+  function showMaterial(index,manual=true) {
+    materialIndex=(index+materialApplications.length)%materialApplications.length;
+    document.querySelectorAll('.material-slide').forEach((slide,i)=>{slide.hidden=i!==materialIndex;});
+    document.querySelectorAll('[data-material-target]').forEach((button,i)=>button.setAttribute('aria-pressed',String(i===materialIndex)));
+    document.getElementById('material-counter').textContent=`${String(materialIndex+1).padStart(2,'0')} / 09`;
+    const next=document.querySelector(`#material-slide-${(materialIndex+1)%materialApplications.length} img`);
+    if(next)next.loading='eager';
+    if(manual) {
+      document.getElementById('material-announcement').textContent=text(materialApplications[materialIndex].title);
+      startMaterials();
+    }
+  }
+  function initMaterials() {
+    const carousel=document.querySelector('.materials-section');
+    if(!carousel)return;
+    if('IntersectionObserver' in window) {
+      const observer=new window.IntersectionObserver(entries=>{materialVisible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.15;materialVisible?startMaterials():stopMaterials();},{threshold:[0,.15]});
+      observer.observe(carousel);
+    }
+    carousel.addEventListener('focusin',event=>{if(event.target.closest('a'))stopMaterials();});
+    carousel.addEventListener('focusout',event=>{if(!carousel.contains(event.relatedTarget))startMaterials();});
+    document.addEventListener('visibilitychange',()=>document.hidden?stopMaterials():startMaterials());
+    showMaterial(0,false);
+    startMaterials();
   }
 
   function supportBlock() {
@@ -302,6 +348,7 @@
     footer();
     addFloatingWhatsApp();
     initCarousel();
+    initMaterials();
     if(page==='catalog') updateCatalog();
     document.getElementById('contact-form')?.addEventListener('submit', event=>{
       event.preventDefault();
@@ -319,6 +366,8 @@
   }
 
   document.addEventListener('click', event=>{
+    const materialTarget=event.target.closest('[data-material-target]');
+    if(materialTarget)showMaterial(Number(materialTarget.dataset.materialTarget));
     const slideTarget=event.target.closest('[data-slide-target]');
     if(slideTarget)showSlide(Number(slideTarget.dataset.slideTarget));
     const languageButton=event.target.closest('[data-language]');
@@ -348,6 +397,7 @@
     if(event.target.id==='catalog-search') {catalogSearch=event.target.value;updateCatalog();}
   });
   document.addEventListener('keydown',event=>{
+    if(page==='home' && event.target.closest?.('.materials-section') && ['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();showMaterial(materialIndex+(event.key==='ArrowRight'?1:-1));}
     if(page==='home' && event.target.closest?.('.home-carousel') && ['ArrowLeft','ArrowRight'].includes(event.key)){event.preventDefault();showSlide(carouselIndex+(event.key==='ArrowRight'?1:-1));}
     if(event.key==='Escape') {
       const toggle=document.querySelector('.menu-toggle');toggle?.setAttribute('aria-expanded','false');

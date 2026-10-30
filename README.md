@@ -74,7 +74,7 @@ Las imágenes de galerías suministradas pueden contener texto incorporado; el c
 
 ## Referencias y procedencia
 
-El sitio conserva el enfoque de catálogo del archivo `Rigel_Catalogo_HTML.zip`. La portada utiliza una nueva composición con slides de marcaje y codificación, fotografías de aplicaciones y bloques alternos de producto. Las imágenes y la marca proceden de `assets.zip`. Las fuentes Poppins e Inter proceden del repositorio oficial `google/fonts` y se distribuyen con sus licencias OFL.
+El sitio conserva el enfoque de catálogo del archivo `Rigel_Catalogo_HTML.zip`. La portada combina slides de marcaje y codificación con un carrusel de aplicaciones por material. La marca y las imágenes iniciales proceden de `assets.zip`; los reemplazos y las nuevas aplicaciones fueron suministrados por el propietario. Las fuentes Poppins e Inter proceden del repositorio oficial `google/fonts` y se distribuyen con sus licencias OFL.
 
 Las especificaciones y compatibilidades se contrastaron con los archivos suministrados y el catálogo de [Rigel Ecuador](https://rigelsa.com/) — archivos públicos `js/data.js` e `js/inventario-bilingue.js`, consultados el 27 de octubre de 2026. Las condiciones comerciales de Colombia se confirman al cotizar.
 
@@ -103,3 +103,9 @@ La imagen principal de RG1 se reemplazó por el PNG transparente «Dos vistas de
 El catálogo comienza directamente con filtros y productos, sin bloque de presentación ni texto de portafolio. Las fotografías sobre gris claro se acompañan de modelo, características y compatibilidad en una composición abierta, sin marcos de tarjeta, insignias repetidas ni recuadros de compatibilidad. Todos los elementos del contenido tienen esquinas rectas; el CTA sobre el fondo azul de contacto tiene fondo blanco sólido. Se mantienen únicamente M1, RG1, S70 y RCN1, en ambos idiomas.
 
 El zoom de RG1 se aplica al contenedor de ambas vistas, con la misma escala 1.045 de los demás productos, para mantener completa la máquina. Este efecto se limita a dispositivos con cursor y se desactiva su transición con movimiento reducido. Se comprobaron los estados de búsqueda y filtros, el zoom real de RG1 y la distribución de las tarjetas de 320 a 1440 px, en español e inglés.
+
+## Aplicaciones del inicio
+
+El 30 de octubre de 2026 se sustituyeron el apartado de codificadoras y la cuadrícula anterior de aplicaciones por un carrusel con las nueve imágenes entregadas en `F:/Rigel/web_colombia`. Los PNG se conservan sin modificar en `dist/assets/aplicaciones/materiales/`. Cada slide tiene texto y alt en español e inglés, muestra la imagen completa y enlaza al contacto con el material seleccionado.
+
+El carrusel de aplicaciones es independiente de la portada: avanza cada cinco segundos mientras la sección está visible, muestra un solo material y permite seleccionarlo mediante puntos o teclado. Se detiene al ocultar la pestaña o al enfocar su enlace de contacto y respeta la preferencia de movimiento reducido. Se verificaron los nueve materiales de 320 a 1440 px, en ambos idiomas. Las imágenes muestran aplicaciones de referencia; la consulta permite revisar la tinta y la prueba para el material del cliente.
