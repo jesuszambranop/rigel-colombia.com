@@ -588,7 +588,6 @@ body[data-page=catalog] .simple-contact a:focus-visible{outline-color:white;outl
 .material-dots button{border:0;background:transparent;padding:9px;width:28px;height:40px;display:grid;place-items:center}
 .material-dots button>span{display:block;width:6px;height:6px;background:#a7b4bd;border-radius:50%}
 .material-dots button[aria-pressed=true]>span{background:var(--blue)}
-.material-counter{font-size:11px;color:#72818a;min-width:45px;white-space:nowrap}
 .material-note{font-size:11px;line-height:1.85;color:var(--muted);max-width:720px;margin:21px 0 0}
 @media(max-width:960px){
   .material-slide{gap:36px;min-height:340px}
