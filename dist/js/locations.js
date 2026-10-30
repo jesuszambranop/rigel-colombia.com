@@ -2,15 +2,15 @@
 // Colombia's email and WhatsApp are the details confirmed by the site owner.
 window.RIGEL_LOCATIONS = [
   {
+    id:'colombia',name:['Colombia','Colombia'],phone:'+57 310 812 3039',whatsapp:'573108123039',email:'colombia@rigelsa.com',
+    address:['Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.','Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.']
+  },
+  {
     id:'ecuador', name:['Ecuador','Ecuador'], email:'ventas@rigelsa.com', website:'https://rigelsa.com/',
     offices:[
       {name:'Guayaquil',phone:'+593 93 947 4695',whatsapp:'593939474695',address:['Calle Elizalde #119 y Pichincha, Edificio Luz María, piso 8, oficina 8A.','Calle Elizalde #119 y Pichincha, Luz María Building, 8th floor, office 8A.']},
       {name:'Quito',phone:'+593 96 934 6801',whatsapp:'593969346801',address:['Edificio Empresarial Unicornio, frente al CCI, piso 14, oficina 1402.','Unicornio Business Building, opposite CCI, 14th floor, office 1402.']}
     ]
-  },
-  {
-    id:'colombia',name:['Colombia','Colombia'],phone:'+57 310 812 3039',whatsapp:'573108123039',email:'colombia@rigelsa.com',
-    address:['Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.','Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.']
   },
   {
     id:'brasil',name:['Brasil','Brazil'],phone:'+55 62 99203 7992',whatsapp:'5562992037992',email:'info@rigelsa.com.br',website:'https://rigelsa.com.br/',

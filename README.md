@@ -82,13 +82,13 @@ No se reutilizaron listados de clientes de Ecuador, cifras comerciales, precios 
 
 La información institucional de Quiénes somos se contrastó con [Rigel Ecuador](https://rigelsa.com/quienes-somos.html) y su archivo público `js/app.js`, consultados el 27 de octubre de 2026. Se adaptó la oferta al catálogo exclusivo de Colombia.
 
-La presentación de Rigel en el inicio utiliza el mismo mapa institucional y un resumen de su presencia internacional. Se eliminaron la fotografía del técnico y su archivo de la publicación.
+La presentación de Rigel en el inicio utiliza una composición propia centrada en Colombia, acompañada de un resumen de su presencia internacional. Se eliminaron la fotografía del técnico y su archivo de la publicación.
 
 ## WhatsApp y contactos internacionales
 
 El inicio incorpora CTA verdes de WhatsApp al principio y al final. Todas las páginas, incluida 404, tienen un acceso flotante a **+57 310 812 3039**. Los datos internacionales están en `dist/js/locations.js` y se contrastaron con el archivo público `https://rigelsa.com/js/app.js` el 27 de octubre de 2026. Colombia mantiene el correo confirmado por el propietario. Cada oficina enlaza con su propio número. No se han enviado mensajes durante la comprobación.
 
-El bloque institucional del inicio se conserva. Solo los mapas de Quiénes somos cambian al estilo de puntos grises: SVG generado con geometría geográfica de [Natural Earth](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson), de dominio público. El icono vectorial de WhatsApp procede de Assets; su licencia se conserva en `dist/assets/social/`.
+El texto institucional del inicio se conserva. El mapa del inicio muestra Colombia con puntos azules de tamaño y opacidad variables, con Barranquilla destacada; es un SVG propio y compacto. Quiénes somos conserva el mapa latinoamericano en puntos grises. Ambos usan geometría geográfica de [Natural Earth](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson), de dominio público. El icono vectorial de WhatsApp procede de Assets; su licencia se conserva en `dist/assets/social/`.
 
 ## Imágenes de portada
 
@@ -109,3 +109,9 @@ El zoom de RG1 se aplica al contenedor de ambas vistas, con la misma escala 1.04
 El 30 de octubre de 2026 se sustituyeron el apartado de codificadoras y la cuadrícula anterior de aplicaciones por un carrusel con las nueve imágenes entregadas en `F:/Rigel/web_colombia`. Los PNG se conservan sin modificar en `dist/assets/aplicaciones/materiales/`. Cada slide tiene texto y alt en español e inglés, muestra la imagen completa y enlaza al contacto con el material seleccionado.
 
 El carrusel de aplicaciones es independiente de la portada: avanza cada cinco segundos mientras la sección está visible, muestra un solo material y permite seleccionarlo mediante puntos o teclado. Se detiene al ocultar la pestaña o al enfocar su enlace de contacto y respeta la preferencia de movimiento reducido. Se verificaron los nueve materiales de 320 a 1440 px, en ambos idiomas. Las imágenes muestran aplicaciones de referencia; la consulta permite revisar la tinta y la prueba para el material del cliente.
+
+## Jerarquía visual y contactos
+
+Las aplicaciones tienen fondo blanco y título azul Rigel. El mismo azul distingue los títulos principales de contenido; los subtítulos y detalles conservan tonos oscuros y las secciones azules usan texto blanco. La portada mantiene sus colores y tipografía aprobados. La tabla M1/RG1 usa divisores finos de fila y columna, encabezado celeste y fondos alternos discretos.
+
+En Quiénes somos, Colombia aparece primero y Ecuador tiene dos botones con el icono de WhatsApp y las etiquetas Guayaquil y Quito. El directorio es la última sección de contenido: se retiró el bloque redundante Rigel en Colombia. Se verificaron las tres páginas afectadas de 320 a 1440 px, en español e inglés.
