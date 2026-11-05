@@ -106,7 +106,7 @@
       caption: ['M1 + cartucho S70','M1 + S70 cartridge']
     },
     {
-      image: 'assets/slides/rg1-tarro.png', kind: 'marking',
+      image: 'assets/slides/banner-rg1.webp', kind: 'marking',
       alt: ['Codificadora RG1 marcando fechas y lote sobre la tapa de un envase de vidrio','RG1 coding printer marking dates and a batch number on a glass container lid'],
       label: ['RG1 · MARCAJE Y CODIFICACIÓN','RG1 · MARKING & CODING'],
       title: ['RG1: marcaje y<br>codificación.','RG1: marking<br>and coding.'],
