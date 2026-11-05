@@ -63,7 +63,7 @@
     ];
     document.getElementById('site-header').innerHTML = `
       <div class="header-main container">
-        <a class="brand" href="${url('index.html')}" aria-label="Rigel Colombia"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="174" height="60"><span>COLOMBIA</span></a>
+        <a class="brand" href="${url('index.html')}" aria-label="Rigel Colombia"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="174" height="60"></a>
         <nav id="main-nav" aria-label="${tr('Navegación principal','Main navigation')}">${nav.map(([file,label,key]) => `<a href="${url(file.split('#')[0])}${file.includes('#') ? '#'+file.split('#')[1] : ''}" ${page===key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
         <div class="header-actions"><div class="language-switch" role="group" aria-label="${tr('Idioma','Language')}"><button type="button" data-language="es" aria-pressed="${language==='es'}" lang="es">ES</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="${language==='en'}" lang="en">EN</button></div><a class="header-contact" href="${url('contacto.html')}">${tr('Hablemos','Let’s talk')}${arrow}</a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="${tr('Abrir menú','Open menu')}"><span></span><span></span></button></div>
       </div>`;
@@ -71,7 +71,7 @@
 
   function footer() {
     document.getElementById('site-footer').innerHTML = `
-      <div class="container footer-top"><div class="footer-about"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="150" height="52"><p>${tr('Codificadoras y tintas para Colombia.','Coding printers and inks for Colombia.')}</p><span class="footer-country">COLOMBIA</span></div>
+      <div class="container footer-top"><div class="footer-about"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="150" height="52"><p>${tr('Codificadoras y tintas para Colombia.','Coding printers and inks for Colombia.')}</p></div>
       <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${productUrl('m1')}">M1 + S70</a><a href="${productUrl('rg1')}">RG1 + RCN1</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a><a href="${url('quienes-somos.html')}">${tr('Quiénes somos','About us')}</a></div>
       <div><h2>${tr('Contacto comercial','Sales contact')}</h2><a href="${url('contacto.html')}">${tr('Atención comercial','Sales inquiries')}</a><a href="${url('preguntas-frecuentes.html')}">${tr('Preguntas frecuentes','Frequently asked questions')}</a><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div>
       <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Rigel. ${tr('Todos los derechos reservados.','All rights reserved.')}</span><a href="https://rigelsa.com/" target="_blank" rel="noopener noreferrer">${tr('Visita Rigel Ecuador','Visit Rigel Ecuador')} ↗</a><a href="${url('privacidad.html')}">${tr('Privacidad','Privacy')}</a></div>`;
@@ -95,7 +95,18 @@
 
   const homeSlides = [
     {
-      image: 'assets/slides/rg1-marcaje-tapa.webp', kind: 'marking',
+      image: 'assets/slides/m1-acetaminofen.png', kind: 'handheld',
+      alt: ['Codificadora M1 imprimiendo fechas y lote en una caja de acetaminofén','M1 coding printer printing dates and a batch number on an acetaminophen carton'],
+      label: ['CODIFICADORA PORTÁTIL M1','M1 HANDHELD CODING PRINTER'],
+      title: ['Codificadora<br>portátil M1.','M1 handheld<br>coding printer.'],
+      description: ['Impresión manual con pantalla táctil y cartucho S70.','Handheld printing with a touchscreen and S70 cartridge.'],
+      cta: ['Conocer la M1','Explore the M1'],
+      href: () => productUrl('m1'),
+      tab: ['Codificación portátil','Handheld coding'],
+      caption: ['M1 + cartucho S70','M1 + S70 cartridge']
+    },
+    {
+      image: 'assets/slides/rg1-tarro.png', kind: 'marking',
       alt: ['Codificadora RG1 marcando fechas y lote sobre la tapa de un envase de vidrio','RG1 coding printer marking dates and a batch number on a glass container lid'],
       label: ['RG1 · MARCAJE Y CODIFICACIÓN','RG1 · MARKING & CODING'],
       title: ['RG1: marcaje y<br>codificación.','RG1: marking<br>and coding.'],
@@ -106,19 +117,8 @@
       caption: ['RG1 + cartucho RCN1','RG1 + RCN1 cartridge']
     },
     {
-      image: 'assets/slides/m1-codificacion-empaque.webp', kind: 'handheld',
-      alt: ['Codificadora M1 utilizada con una mano sobre un empaque','M1 coding printer used with one hand on packaging'],
-      label: ['CODIFICADORA PORTÁTIL M1','M1 HANDHELD CODING PRINTER'],
-      title: ['Codificadora<br>portátil M1.','M1 handheld<br>coding printer.'],
-      description: ['Impresión manual con pantalla táctil y cartucho S70.','Handheld printing with a touchscreen and S70 cartridge.'],
-      cta: ['Conocer la M1','Explore the M1'],
-      href: () => productUrl('m1'),
-      tab: ['Codificación portátil','Handheld coding'],
-      caption: ['M1 + cartucho S70','M1 + S70 cartridge']
-    },
-    {
-      image: 'assets/slides/codificacion-multimaterial.webp', kind: 'packaging',
-      alt: ['Productos con fechas y lotes impresos en botellas, cajas y envases cosméticos','Products with printed dates and batches on bottles, cartons and cosmetic containers'],
+      image: 'assets/slides/productos-despensa.png', kind: 'packaging',
+      alt: ['Arroz, aceite, harina, lentejas y pasta con fechas y lotes impresos','Rice, oil, flour, lentils and pasta with printed dates and batch numbers'],
       label: ['TU PRODUCTO. TU APLICACIÓN.','YOUR PRODUCT. YOUR APPLICATION.'],
       title: ['Identifica<br>tus envases.','Identify<br>your packaging.'],
       description: ['Vidrio, plástico, cartón o metal. Revisemos tu superficie y el mensaje que necesitas imprimir.','Glass, plastic, cardboard or metal. Let’s review your material and the message you need to print.'],
@@ -160,7 +160,7 @@
     return `<section class="home-carousel" aria-label="${tr('Marcaje y codificación Rigel Colombia','Rigel Colombia marking and coding')}" aria-roledescription="${tr('carrusel','carousel')}">
       <h1 class="sr-only">${tr('Marcaje y codificación en Colombia. Codificadoras M1 y RG1.','Marking and coding in Colombia. M1 and RG1 coding printers.')}</h1>
       <div class="slide-stage">${homeSlides.map((slide,i)=>`<div id="home-slide-${i}" class="home-slide slide--${slide.kind}" role="group" aria-roledescription="${tr('diapositiva','slide')}" aria-label="${i+1} ${tr('de','of')} ${homeSlides.length}" ${i ? 'hidden' : ''}>
-        <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="2048" height="882" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
+        <img class="slide-image" src="${slide.image}" alt="${text(slide.alt)}" width="1910" height="823" ${i===0?'fetchpriority="high"':'loading="lazy"'}>
         <div class="container slide-layout"><div class="slide-copy"><h2>${text(slide.title)}</h2><p class="slide-description">${text(slide.description)}</p><div class="slide-actions">${link(slide.href(),text(slide.cta),'button primary slide-cta')}${whatsappLink(tr('Contáctanos','Contact us'))}</div></div></div>
       </div>`).join('')}
       <div class="container carousel-controls"><div class="carousel-tools"><div class="slide-dots" role="group" aria-label="${tr('Seleccionar slide','Select slide')}">${homeSlides.map((slide,i)=>`<button type="button" data-slide-target="${i}" aria-controls="home-slide-${i}" aria-pressed="${i===0}" aria-label="${text(slide.tab)}"><span></span></button>`).join('')}</div></div></div></div><span class="sr-only" id="slide-counter" aria-hidden="true">01 / 03</span><span class="sr-only" id="slide-announcement" role="status"></span></section>`;
@@ -259,7 +259,7 @@
       [['Batería*','Battery*'],['4 a 6 horas','4 to 6 hours'],['Hasta 16 horas','Up to 16 hours']],
       [['Cartucho','Cartridge'],['S70','S70'],['RCN1','RCN1']]
     ];
-    return `<section class="section comparison" id="comparar"><div class="container">${sectionHeading(tr('COMPARA Y ELIGE','COMPARE & CHOOSE'),tr('¿M1 o RG1?','M1 or RG1?'),tr('Las diferencias que te ayudan a decidir.','The differences that help you decide.'))}<div class="table-scroll" role="region" aria-label="${tr('Comparación de equipos','Printer comparison')}" tabindex="0"><table><caption class="sr-only">${tr('Comparación de codificadoras M1 y RG1','M1 and RG1 coding printer comparison')}</caption><thead><tr><th scope="col">${tr('Característica','Feature')}</th><th scope="col">M1</th><th scope="col">RG1</th></tr></thead><tbody>${rows.map(row=>`<tr><th scope="row">${text(row[0])}</th><td>${text(row[1])}</td><td>${text(row[2])}</td></tr>`).join('')}</tbody><tfoot><tr><td></td><td><a class="text-link" href="${productUrl('m1')}">${tr('Ver M1','View M1')}${arrow}</a></td><td><a class="text-link" href="${productUrl('rg1')}">${tr('Ver RG1','View RG1')}${arrow}</a></td></tr></tfoot></table></div><p class="small muted">${tr('*Autonomía según condiciones de uso. Confirma la configuración y el contenido del kit al cotizar.','*Battery life depends on operating conditions. Confirm configuration and kit contents when requesting a quote.')}</p></div></section>`;
+    return `<section class="section comparison" id="comparar"><div class="container">${sectionHeading(tr('COMPARA Y ELIGE','COMPARE & CHOOSE'),tr('¿M1 o RG1?','M1 or RG1?'),tr('Las diferencias que te ayudan a decidir.','The differences that help you decide.'))}<div class="comparison-details"><table><caption class="sr-only">${tr('Comparación de codificadoras M1 y RG1','M1 and RG1 coding printer comparison')}</caption><colgroup><col class="comparison-feature-col"><col><col></colgroup><thead><tr><th scope="col"><span class="comparison-feature-label">${tr('Características','Specifications')}</span></th>${['m1','rg1'].map(id=>{const p=products.find(item=>item.id===id);return `<th scope="col"><a class="comparison-model" href="${productUrl(id)}"><span class="comparison-photo">${artwork(p,`<img src="${p.image}" alt="" width="240" height="180" loading="lazy">`)}</span><span class="comparison-model-name">${p.model}</span><span class="comparison-model-family">${text(p.family)}</span></a></th>`}).join('')}</tr></thead><tbody>${rows.map(row=>`<tr><th scope="row">${text(row[0])}</th><td>${text(row[1])}</td><td>${text(row[2])}</td></tr>`).join('')}</tbody><tfoot><tr><td></td><td><a class="comparison-product-link" href="${productUrl('m1')}">${tr('Conocer M1','Explore M1')}</a></td><td><a class="comparison-product-link" href="${productUrl('rg1')}">${tr('Conocer RG1','Explore RG1')}</a></td></tr></tfoot></table></div><p class="small muted">${tr('*Autonomía según condiciones de uso. Confirma la configuración y el contenido del kit al cotizar.','*Battery life depends on operating conditions. Confirm configuration and kit contents when requesting a quote.')}</p></div></section>`;
   }
 
   function catalogCard(p) {
