@@ -19,6 +19,14 @@
   const productUrl = id => url('producto.html', {slug:id});
   const arrow = '';
   const download = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" stroke="currentColor" stroke-width="1.6"/></svg>';
+  const assetUrl = path => {
+    const base = path.split('?')[0];
+    const version = window.RIGEL_ASSET_VERSIONS?.[base];
+    return version ? `${base}?v=${version}` : path;
+  };
+  const setMarkup = (element,markup) => {
+    element.innerHTML = markup.replace(/\b(src|href)="(assets\/[^"?#]+)(?:\?[^"#]*)?"/g,(_,attribute,path)=>`${attribute}="${assetUrl(path)}"`);
+  };
   const artwork = (p, image) => p.id === 'rg1' ? `<span class="rg1-art">${image}</span>` : image;
   const link = (href, label, cls = 'button primary') => `<a class="${cls}" href="${href}">${label}${arrow}</a>`;
   const crumb = title => `<div class="container breadcrumb"><a href="${url('index.html')}">${tr('Inicio','Home')}</a><span>/</span><span>${title}</span></div>`;
@@ -37,7 +45,7 @@
     link.id='whatsapp-floating';link.className='whatsapp-floating';
     link.href=`https://wa.me/${config.whatsapp}`;link.target='_blank';link.rel='noopener noreferrer';
     link.setAttribute('aria-label',tr('Contáctanos por WhatsApp','Contact us on WhatsApp'));
-    link.innerHTML=`<img src="assets/social/whatsapp.svg" alt="" width="31" height="35"><span class="sr-only">WhatsApp</span>`;
+    setMarkup(link,`<img src="assets/social/whatsapp.svg" alt="" width="31" height="35"><span class="sr-only">WhatsApp</span>`);
     document.body.appendChild(link);
   }
 
@@ -61,20 +69,20 @@
       ['contacto.html',tr('Contacto','Contact'),'contact'],
       ['quienes-somos.html',tr('Quiénes somos','About us'),'about']
     ];
-    document.getElementById('site-header').innerHTML = `
+    setMarkup(document.getElementById('site-header'), `
       <div class="header-main container">
         <a class="brand" href="${url('index.html')}" aria-label="Rigel Colombia"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="174" height="60"></a>
         <nav id="main-nav" aria-label="${tr('Navegación principal','Main navigation')}">${nav.map(([file,label,key]) => `<a href="${url(file.split('#')[0])}${file.includes('#') ? '#'+file.split('#')[1] : ''}" ${page===key ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
         <div class="header-actions"><div class="language-switch" role="group" aria-label="${tr('Idioma','Language')}"><button type="button" data-language="es" aria-pressed="${language==='es'}" lang="es">ES</button><span aria-hidden="true">/</span><button type="button" data-language="en" aria-pressed="${language==='en'}" lang="en">EN</button></div><a class="header-contact" href="${url('contacto.html')}">${tr('Hablemos','Let’s talk')}${arrow}</a><button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="${tr('Abrir menú','Open menu')}"><span></span><span></span></button></div>
-      </div>`;
+      </div>`);
   }
 
   function footer() {
-    document.getElementById('site-footer').innerHTML = `
+    setMarkup(document.getElementById('site-footer'), `
       <div class="container footer-top"><div class="footer-about"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="150" height="52"><p>${tr('Codificadoras y tintas para Colombia.','Coding printers and inks for Colombia.')}</p></div>
       <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${productUrl('m1')}">M1 + S70</a><a href="${productUrl('rg1')}">RG1 + RCN1</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a><a href="${url('quienes-somos.html')}">${tr('Quiénes somos','About us')}</a></div>
       <div><h2>${tr('Contacto comercial','Sales contact')}</h2><a href="${url('contacto.html')}">${tr('Atención comercial','Sales inquiries')}</a><a href="${url('preguntas-frecuentes.html')}">${tr('Preguntas frecuentes','Frequently asked questions')}</a><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div>
-      <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Rigel. ${tr('Todos los derechos reservados.','All rights reserved.')}</span><a href="https://rigelsa.com/" target="_blank" rel="noopener noreferrer">${tr('Visita Rigel Ecuador','Visit Rigel Ecuador')} ↗</a><a href="${url('privacidad.html')}">${tr('Privacidad','Privacy')}</a></div>`;
+      <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Rigel. ${tr('Todos los derechos reservados.','All rights reserved.')}</span><a href="https://rigelsa.com/" target="_blank" rel="noopener noreferrer">${tr('Visita Rigel Ecuador','Visit Rigel Ecuador')} ↗</a><a href="${url('privacidad.html')}">${tr('Privacidad','Privacy')}</a></div>`);
   }
 
   function productCard(p, index = 0) {
@@ -275,7 +283,7 @@
     const normalized = catalogSearch.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
     const visible = products.filter(p => (catalogType==='all'||p.type===catalogType) && `${p.model} ${text(p.name)} ${text(p.family)} ${p.ink||p.printer}`.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(normalized));
     document.getElementById('result-count').textContent=tr(`${visible.length} de 4 productos`,`${visible.length} of 4 products`);
-    document.getElementById('product-results').innerHTML=visible.length ? visible.map(catalogCard).join('') : `<div class="empty-state"><h2>${tr('Sin coincidencias','No matches')}</h2><p>${tr('Prueba con M1, RG1, S70 o RCN1.','Try M1, RG1, S70 or RCN1.')}</p><button class="button outline" id="clear-filters">${tr('Limpiar filtros','Clear filters')}</button></div>`;
+    setMarkup(document.getElementById('product-results'),visible.length ? visible.map(catalogCard).join('') : `<div class="empty-state"><h2>${tr('Sin coincidencias','No matches')}</h2><p>${tr('Prueba con M1, RG1, S70 o RCN1.','Try M1, RG1, S70 or RCN1.')}</p><button class="button outline" id="clear-filters">${tr('Limpiar filtros','Clear filters')}</button></div>`);
     document.querySelectorAll('[data-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.filter===catalogType)));
   }
 
@@ -343,7 +351,7 @@
     document.querySelector('.skip-link').textContent=tr('Ir al contenido','Skip to content');
     header();
     const views={home,catalog,product,faq,guides:guidePage,contact,about,privacy};
-    document.getElementById('main-content').innerHTML=(views[page]||home)();
+    setMarkup(document.getElementById('main-content'),(views[page]||home)());
     footer();
     addFloatingWhatsApp();
     initCarousel();
@@ -388,7 +396,7 @@
     if(event.target.closest('#clear-filters')) {catalogType='all';catalogSearch='';document.getElementById('catalog-search').value='';updateCatalog();}
     const thumb=event.target.closest('[data-gallery]');
     if(thumb && selected) {
-      const image=document.getElementById('gallery-image');image.src=selected.gallery[Number(thumb.dataset.gallery)];
+      const image=document.getElementById('gallery-image');image.src=assetUrl(selected.gallery[Number(thumb.dataset.gallery)]);
       document.querySelectorAll('[data-gallery]').forEach(button=>button.setAttribute('aria-pressed',String(button===thumb)));
     }
   });

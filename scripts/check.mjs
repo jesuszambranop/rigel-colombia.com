@@ -30,12 +30,12 @@ for(const file of htmlFiles){
     assert.ok(existsSync(join(root,path)),`${file}: missing ${path}`);
   }
 }
-for(const file of ['app.js','products.js','config.js','locations.js'])new vm.Script(readFileSync(join(root,'js',file),'utf8'),{filename:file});
+for(const file of ['app.js','products.js','config.js','locations.js','asset-versions.js','freshness.js'])new vm.Script(readFileSync(join(root,'js',file),'utf8'),{filename:file});
 for(const file of readdirSync(join(root,'css')).filter(name=>name.endsWith('.css'))){
   const css=readFileSync(join(root,'css',file),'utf8');
   for(const match of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)){
     if(/^(https?:|data:)/.test(match[1]))continue;
-    assert.ok(existsSync(resolve(root,'css',match[1])),`Missing CSS asset: ${match[1]}`);
+    assert.ok(existsSync(resolve(root,'css',match[1].split('?')[0])),`Missing CSS asset: ${match[1]}`);
   }
 }
 assert.match(context.window.RIGEL_CONFIG.email,/^[^\s@]+@[^\s@]+\.[^\s@]+$/);

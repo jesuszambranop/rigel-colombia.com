@@ -55,6 +55,14 @@ El workflow `.github/workflows/deploy.yml` comprueba los archivos y publica `dis
 
 La carpeta `.openai/` contiene la configuración de una vista alojada en Sites, independiente de GitHub Pages. No contiene credenciales.
 
+## Actualizaciones y caché
+
+Cada publicación prepara automáticamente un identificador por contenido para estilos, JavaScript, fuentes, imágenes y documentos. Si cambia un archivo, cambia su URL; los archivos sin cambios conservan su caché. `npm run build` regenera estos identificadores y `npm run check` los prepara, valida el sitio y prueba las actualizaciones. El workflow de GitHub ejecuta el mismo proceso antes de publicar.
+
+En cada carga de página se consulta `site-version.json` con `cache: no-store` y una URL de comprobación nueva. Si el HTML pertenece a una versión anterior, se abre una vez la URL de la nueva versión, conservando idioma, producto, parámetros y ancla. Una respuesta lenta o sin conexión no impide usar la página. No se borran cookies ni preferencias y no se instala un service worker.
+
+Este mecanismo actualiza los archivos del sitio cuando la nueva publicación está disponible; no sustituye ni desbloquea el despliegue del proveedor. Una pestaña que permanezca abierta sigue con su versión hasta recargar o navegar. Las copias antiguas de HTML anteriores a la incorporación de este mecanismo necesitan recibir primero el HTML nuevo del alojamiento.
+
 ## Actualizar el sitio
 
 | Archivo | Contenido |

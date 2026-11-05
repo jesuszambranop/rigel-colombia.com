@@ -4,8 +4,9 @@
   "private": true,
   "description": "Catálogo bilingüe Rigel Colombia, HTML, CSS y JavaScript sin frameworks",
   "scripts": {
-    "dev": "node scripts/serve.mjs",
-    "check": "node scripts/check.mjs"
+    "dev": "node scripts/prepare.mjs && node scripts/serve.mjs",
+    "build": "node scripts/prepare.mjs",
+    "check": "node scripts/prepare.mjs && node scripts/check.mjs && node --test scripts/cache.test.mjs"
   },
   "engines": {"node": ">=20"}
 }
