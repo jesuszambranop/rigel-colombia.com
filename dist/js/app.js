@@ -66,8 +66,9 @@
     const nav = [
       ['index.html',tr('Inicio','Home'),'home'],
       ['catalogo.html',tr('Catálogo','Catalog'),'catalog'],
+      ['quienes-somos.html',tr('Quiénes somos','About us'),'about'],
       ['contacto.html',tr('Contacto','Contact'),'contact'],
-      ['quienes-somos.html',tr('Quiénes somos','About us'),'about']
+      ['trabaja-con-nosotros.html',tr('Trabaja con nosotros','Careers'),'careers']
     ];
     setMarkup(document.getElementById('site-header'), `
       <div class="header-main container">
@@ -80,8 +81,8 @@
   function footer() {
     setMarkup(document.getElementById('site-footer'), `
       <div class="container footer-top"><div class="footer-about"><img src="assets/brand/rigel-horizontal.png" alt="RIGEL" width="150" height="52"><p>${tr('Codificadoras y tintas para Colombia.','Coding printers and inks for Colombia.')}</p></div>
-      <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${productUrl('m1')}">M1 + S70</a><a href="${productUrl('rg1')}">RG1 + RCN1</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a><a href="${url('quienes-somos.html')}">${tr('Quiénes somos','About us')}</a></div>
-      <div><h2>${tr('Contacto comercial','Sales contact')}</h2><a href="${url('contacto.html')}">${tr('Atención comercial','Sales inquiries')}</a><a href="${url('preguntas-frecuentes.html')}">${tr('Preguntas frecuentes','Frequently asked questions')}</a><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div>
+      <div><h2>${tr('Explora','Explore')}</h2><a href="${url('catalogo.html')}">${tr('Catálogo completo','Full catalog')}</a><a href="${url('guias.html')}">${tr('Guías de codificación','Coding guides')}</a><a href="${url('quienes-somos.html')}">${tr('Quiénes somos','About us')}</a></div>
+      <div><h2>${tr('Contacto comercial','Sales contact')}</h2><a href="${url('contacto.html')}">${tr('Atención al cliente','Customer service')}</a><a href="${url('preguntas-frecuentes.html')}">${tr('Preguntas frecuentes','Frequently asked questions')}</a><a href="mailto:${esc(config.email)}">${esc(config.email)}</a>${config.whatsapp?`<a href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)}</a>`:''}</div></div>
       <div class="container footer-bottom"><span>© ${new Date().getFullYear()} Rigel. ${tr('Todos los derechos reservados.','All rights reserved.')}</span><a href="https://rigelsa.com/" target="_blank" rel="noopener noreferrer">${tr('Visita Rigel Ecuador','Visit Rigel Ecuador')} ↗</a><a href="${url('privacidad.html')}">${tr('Privacidad','Privacy')}</a></div>`);
   }
 
@@ -90,7 +91,7 @@
   }
 
   const materialApplications = [
-    {image:'tapas.png',title:['Tapas y cierres','Lids and closures'],description:['Fechas de elaboración, vencimiento y lote sobre la tapa del envase. La información visible desde el primer vistazo.','Production dates, expiry dates and batch numbers on container lids. Product information visible at a glance.'],alt:['Fechas y lote impresos en la tapa blanca de un frasco de conservas','Dates and batch number printed on the white lid of a preserved-food jar']},
+    {image:'tapas.png',title:['Tapas de envases','Container lids'],description:['Fechas de elaboración, vencimiento y lote sobre la tapa del envase. La información visible desde el primer vistazo.','Production dates, expiry dates and batch numbers on container lids. Product information visible at a glance.'],alt:['Fechas y lote impresos en la tapa blanca de un frasco de conservas','Dates and batch number printed on the white lid of a preserved-food jar']},
     {image:'empaques-flexibles.png',title:['Empaques flexibles','Flexible packaging'],description:['Identifica bolsas y empaques alimentarios con fechas y lotes, aprovechando el espacio disponible en su superficie.','Identify food pouches and flexible packaging with dates and batch numbers, using the space available on their surface.'],alt:['Bolsa alimentaria con fecha de elaboración, caducidad y lote','Food pouch with production date, expiry date and batch number']},
     {image:'envases-vidrio.png',title:['Envases de vidrio','Glass containers'],description:['Códigos sobre botellas y frascos de alimentos. Fechas y lotes para acompañar la identificación de cada envase.','Codes on food bottles and jars. Dates and batch numbers to support the identification of each container.'],alt:['Botella de kétchup de vidrio con fechas y código de lote','Glass ketchup bottle with dates and a batch code']},
     {image:'botellas-plastico.png',title:['Botellas de plástico','Plastic bottles'],description:['Marcaje de fechas y lotes en envases de bebidas. Revisamos el material y la zona de impresión de tu botella.','Date and batch marking on beverage containers. We review your bottle material and the area to be printed.'],alt:['Botella plástica de zumo con fechas y lote visibles','Plastic juice bottle with visible dates and batch number']},
@@ -155,7 +156,7 @@
   }
 
   function internationalHome() {
-    return `<section class="home-band international-home international-home--colombia" id="presencia"><div class="container colombia-home-layout"><figure class="home-colombia-focus"><div class="home-map-caption"><strong>Colombia</strong><span>${tr('Nuestra presencia local','Our local presence')}</span></div><div class="home-colombia-map"><img src="assets/nosotros/colombia-presencia-halftone.svg" alt="${tr('Mapa de Colombia en puntos azules, con Barranquilla destacada','Map of Colombia in blue halftone dots, highlighting Barranquilla')}" width="520" height="500" loading="lazy"><span class="home-colombia-city" style="left:43.96%;top:14.5%">Barranquilla</span></div></figure><div class="colombia-home-copy"><p class="eyebrow">${tr('RIGEL INTERNACIONAL','RIGEL INTERNATIONAL')}</p><h2>${tr('Una empresa internacional, presente en Latinoamérica.','An international company with a presence in Latin America.')}</h2><p>${tr('Comercializamos equipos de marcaje y codificación para identificar productos y empaques de distintos sectores.','We supply marking and coding equipment for identifying products and packaging across different industries.')}</p><p>${tr('Nuestra empresa nació en Ecuador y tiene presencia en Colombia, Brasil, Venezuela, Chile y México.','Our company was founded in Ecuador and has a presence in Colombia, Brazil, Venezuela, Chile and Mexico.')}</p><a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a></div></div></section>`;
+    return `<section class="home-band international-home international-home--colombia" id="presencia"><div class="container colombia-home-layout"><figure class="home-colombia-focus"><div class="home-map-caption"><strong>Colombia</strong><span>${tr('Nuestra presencia local','Our local presence')}</span></div><div class="home-colombia-map"><img src="assets/nosotros/colombia-presencia-halftone.svg" alt="${tr('Mapa de Colombia en puntos negros, con Barranquilla y Bogotá destacadas','Map of Colombia in black halftone dots, highlighting Barranquilla and Bogotá')}" width="520" height="500" loading="lazy"><span class="home-colombia-city" style="left:43.96%;top:14.5%">Barranquilla</span><span class="home-colombia-city" style="left:47.46%;top:46.92%">Bogotá</span></div></figure><div class="colombia-home-copy"><p class="eyebrow">${tr('RIGEL INTERNACIONAL','RIGEL INTERNATIONAL')}</p><h2>${tr('Una empresa internacional, presente en Latinoamérica.','An international company with a presence in Latin America.')}</h2><p>${tr('Comercializamos equipos de marcaje y codificación para identificar productos y empaques de distintos sectores.','We supply marking and coding equipment for identifying products and packaging across different industries.')}</p><p>${tr('Nuestra empresa nació en Ecuador y tiene presencia en Colombia, Brasil, Venezuela, Chile y México.','Our company was founded in Ecuador and has a presence in Colombia, Brazil, Venezuela, Chile and Mexico.')}</p><a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a></div></div></section>`;
   }
 
   function about() {
@@ -220,7 +221,7 @@
   }
 
   function supportBlock() {
-    return `<section class="container simple-contact"><div><h2>${tr('Asesoría y contacto','Advice and support')}</h2><p>${tr('Te ayudamos a elegir el equipo y la tinta para tu aplicación.','We can help you choose the printer and ink for your application.')}</p></div><a class="text-link" href="${url('contacto.html')}">${tr('Contactar a Rigel','Contact Rigel')}</a></section>`;
+    return `<section class="container simple-contact"><div><h2>${tr('Atención al cliente','Customer service')}</h2><p>${tr('Te ayudamos a elegir el equipo y la tinta adecuada para tu envase.','We help you choose the right printer and ink for your packaging.')}</p></div><a class="text-link" href="${url('contacto.html')}">${tr('Contactar a Rigel','Contact Rigel')}</a></section>`;
   }
 
 
@@ -260,10 +261,10 @@
 
   function comparison() {
     const rows = [
-      [['Operación','Operation'],['Portátil / manual','Handheld'],['Manual o automática','Handheld or inline']],
+      [['Operación','Operation'],['Manual','Manual'],['Manual o automática','Handheld or inline']],
       [['Pantalla','Display'],['Táctil de 3,5″','3.5″ touchscreen'],['HD de 4,3″','4.3″ HD']],
       [['Altura de impresión','Print height'],['12,7 mm','12.7 mm'],['12,7 mm','12.7 mm']],
-      [['Líneas de impresión','Print lines'],['1 a 4','1 to 4'],['1 a 6','1 to 6']],
+      [['Líneas de impresión','Print lines'],['1 a 6','1 to 6'],['1 a 6','1 to 6']],
       [['Batería*','Battery*'],['4 a 6 horas','4 to 6 hours'],['Hasta 16 horas','Up to 16 hours']],
       [['Cartucho','Cartridge'],['S70','S70'],['RCN1','RCN1']]
     ];
@@ -339,18 +340,83 @@
     return `${crumb(tr('Contacto','Contact'))}<section class="container contact-layout"><div class="contact-copy"><p class="eyebrow">${tr('HABLEMOS DE TU PRODUCCIÓN','LET’S TALK ABOUT YOUR PRODUCTION')}</p><h1>${tr('Contacto','Contact')}</h1><p class="lead">${tr('Encuentra el equipo, el cartucho y la orientación que necesitas para tu aplicación.','Find the printer, cartridge and guidance you need for your application.')}</p><div class="contact-channel"><span class="eyebrow">${tr('RIGEL COLOMBIA','RIGEL COLOMBIA')}</span><a href="mailto:${esc(config.email)}">${esc(config.email)} ↗</a><p>${tr('Consultas para Colombia y orientación de producto.','Colombia inquiries and product guidance.')}</p>${config.whatsapp ? `<a class="text-link" href="https://wa.me/${esc(config.whatsapp)}" target="_blank" rel="noopener noreferrer">WhatsApp · ${esc(config.whatsappDisplay || config.whatsapp)} ${arrow}</a>` : ''}</div><div class="contact-steps"><span>01 / ${tr('Cuéntanos tu aplicación','Tell us about your application')}</span><span>02 / ${tr('Revisamos equipo y tinta','We review the printer and ink')}</span><span>03 / ${tr('Solicita tu cotización','Request your quote')}</span></div></div><form id="contact-form" class="contact-form"><h2>${tr('Cuéntanos qué necesitas.','Tell us what you need.')}</h2><p>${tr('Todos los campos marcados con * son obligatorios.','All fields marked with * are required.')}</p><div class="form-row"><label>${tr('Nombre','Name')} *<input name="name" autocomplete="name" required maxlength="100"></label><label>${tr('Empresa','Company')}<input name="company" autocomplete="organization" maxlength="120"></label></div><label>${tr('Correo electrónico','Email address')} *<input name="email" type="email" autocomplete="email" required maxlength="150"></label><div class="form-row"><label>${tr('Ciudad','City')}<input name="city" autocomplete="address-level2" maxlength="100"></label><label>${tr('Me interesa','I’m interested in')}<select name="product"><option value="">${tr('Necesito asesoría','I need advice')}</option>${products.map(p=>`<option value="${p.id}" ${chosen?.id===p.id?'selected':''}>${text(p.name)}</option>`).join('')}</select></label></div><label>${tr('Tu aplicación o consulta','Your application or question')} *<textarea name="message" rows="5" required maxlength="3000" placeholder="${tr('¿Qué material utilizas? ¿Qué necesitas imprimir?','What material do you use? What do you need to print?')}">${application ? esc(tr(`Aplicación: ${application}. `,`Application: ${application}. `)) : ''}</textarea></label><label class="check-label"><input type="checkbox" required><span>${tr('He leído la','I have read the')} <a href="${url('privacidad.html')}">${tr('información de privacidad','privacy information')}</a> ${tr('y deseo contactar a Rigel.','and wish to contact Rigel.')} *</span></label><button class="button primary" type="submit">${tr('Preparar correo','Prepare email')}${arrow}</button><p class="form-note">${tr('Se abrirá tu aplicación de correo con el mensaje preparado. Revisa el contenido y envíalo desde allí. Este formulario no envía ni almacena tus datos en un servidor.','Your email app will open with a prepared message. Review it and send it from there. This form does not send or store your data on a server.')}</p><p id="form-status" role="status"></p><a id="email-fallback" class="text-link" hidden>${tr('Abrir correo de nuevo','Open email again')}${arrow}</a></form></section>`;
   }
 
+  const careerAreas = {
+    marketing: ['Marketing','Marketing'],
+    accounting: ['Contabilidad','Accounting'],
+    service: ['Servicio técnico','Technical service'],
+    hr: ['Recursos humanos','Human resources'],
+    sales: ['Comercial','Sales'],
+    other: ['Otros','Other']
+  };
+
+  function careers() {
+    const title = tr('Trabaja con nosotros','Careers');
+    return `${crumb(title)}
+      <section class="careers-section">
+        <div class="container careers-layout">
+          <div class="international-page-copy">
+            <p class="eyebrow">RIGEL COLOMBIA</p>
+            <h1>${title}</h1>
+            <p class="international-lead">${tr('Comparte tu perfil con nuestro equipo.','Share your profile with our team.')}</p>
+            <p>${tr('Somos una empresa internacional dedicada al marcaje y la codificación. Cuéntanos sobre tu experiencia y el área en la que te gustaría trabajar.','We are an international company specializing in marking and coding. Tell us about your experience and the area you would like to work in.')}</p>
+            <a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a>
+          </div>
+          <form id="careers-form" class="contact-form careers-form">
+            <h2>${tr('Tu postulación','Your application')}</h2>
+            <p>${tr('Todos los campos marcados con * son obligatorios.','All fields marked with * are required.')}</p>
+            <label>${tr('Nombre completo','Full name')} *<input name="name" autocomplete="name" required maxlength="100"></label>
+            <label>${tr('Correo electrónico','Email address')} *<input name="email" type="email" autocomplete="email" required maxlength="150"></label>
+            <div class="form-row">
+              <label>${tr('Teléfono','Phone')}<input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+              <label>${tr('Ciudad','City')}<input name="city" autocomplete="address-level2" maxlength="100"></label>
+            </div>
+            <label>${tr('Área de interés','Area of interest')} *
+              <select name="area" required>
+                <option value="">${tr('Selecciona un área','Select an area')}</option>
+                ${Object.entries(careerAreas).map(([key,label])=>`<option value="${key}">${text(label)}</option>`).join('')}
+              </select>
+            </label>
+            <label>${tr('Cuéntanos sobre tu experiencia','Tell us about your experience')} *<textarea name="experience" rows="4" required maxlength="1000"></textarea></label>
+            <label class="check-label"><input type="checkbox" required><span>${tr('He leído la','I have read the')} <a href="${url('privacidad.html')}">${tr('información de privacidad','privacy information')}</a> ${tr('y deseo compartir mi postulación con Rigel.','and wish to share my application with Rigel.')} *</span></label>
+            <button class="button primary" type="submit">${tr('Preparar postulación','Prepare application')}${arrow}</button>
+            <p class="form-note">${tr('Se abrirá tu aplicación de correo para que revises y envíes la postulación a','Your email app will open so you can review and send the application to')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>.</p>
+            <p id="form-status" role="status"></p>
+            <a id="email-fallback" class="text-link" hidden>${tr('Abrir correo de nuevo','Open email again')}${arrow}</a>
+          </form>
+        </div>
+      </section>`;
+  }
+
+  function openPreparedEmail(subject, body) {
+    const mailto = `mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const fallback = document.getElementById('email-fallback');
+    fallback.href = mailto;
+    fallback.hidden = false;
+    document.getElementById('form-status').textContent = tr(
+      'Mensaje preparado. Si no se abrió una aplicación de correo, configura una o escribe directamente al correo indicado.',
+      'Message prepared. If an email app did not open, configure one or write directly to the address shown.'
+    );
+    location.href = mailto;
+  }
+
   function privacy() {
-    return `${crumb(tr('Privacidad','Privacy'))}<article class="container policy"><p class="eyebrow">RIGEL COLOMBIA</p><h1>${tr('Tu información.','Your information.')}</h1><h2>${tr('Cómo funciona el contacto','How contact works')}</h2><p>${tr('Este sitio es un catálogo informativo. El formulario prepara un mensaje en tu aplicación de correo. No lo envía automáticamente y no guarda los campos en un servidor del sitio. Tú decides si envías el correo a Rigel.','This website is an informational catalog. The form prepares a message in your email application. It does not send it automatically or save the fields on the site’s server. You decide whether to send the email to Rigel.')}</p><p>${tr('Si envías el mensaje, Rigel recibirá la información incluida para atender tu consulta. Puedes solicitar información sobre el tratamiento de tus datos al mismo canal de contacto:','If you send the message, Rigel will receive the information included to respond to your inquiry. You can ask about the handling of your information through the same contact channel:')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>.</p><h2>${tr('Preferencia de idioma','Language preference')}</h2><p>${tr('Se guarda únicamente tu elección de español o inglés en el almacenamiento local de tu navegador. Puedes eliminarla borrando los datos del sitio. El catálogo funciona aunque este almacenamiento no esté disponible.','Only your Spanish or English preference is saved in your browser’s local storage. You can remove it by clearing the site’s data. The catalog works even when this storage is unavailable.')}</p><h2>${tr('Servicios externos','External services')}</h2><p>${tr('Los enlaces a Rigel Ecuador y WhatsApp, abren servicios externos sujetos a sus propias políticas. El proveedor de alojamiento puede procesar registros técnicos necesarios para servir la web. No se han integrado herramientas de publicidad ni analítica en este catálogo.','Links to Rigel Ecuador and WhatsApp open external services subject to their own policies. The hosting provider may process technical logs needed to serve the website. This catalog does not integrate advertising or analytics tools.')}</p></article>`;
+    return `${crumb(tr('Privacidad','Privacy'))}<article class="container policy"><p class="eyebrow">RIGEL COLOMBIA</p><h1>${tr('Tu información.','Your information.')}</h1><h2>${tr('Cómo funciona el contacto','How contact works')}</h2><p>${tr('Este sitio es un catálogo informativo. El formulario prepara un mensaje en tu aplicación de correo. No lo envía automáticamente y no guarda los campos en un servidor del sitio. Tú decides si envías el correo a Rigel.','This website is an informational catalog. The form prepares a message in your email application. It does not send it automatically or save the fields on the site’s server. You decide whether to send the email to Rigel.')}</p><p>${tr('Si envías el mensaje, Rigel recibirá la información incluida para atender tu consulta o postulación. Puedes solicitar información sobre el tratamiento de tus datos al mismo canal de contacto:','If you send the message, Rigel will receive the information included to respond to your inquiry or application. You can ask about the handling of your information through the same contact channel:')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>.</p><h2>${tr('Preferencia de idioma','Language preference')}</h2><p>${tr('Se guarda únicamente tu elección de español o inglés en el almacenamiento local de tu navegador. Puedes eliminarla borrando los datos del sitio. El catálogo funciona aunque este almacenamiento no esté disponible.','Only your Spanish or English preference is saved in your browser’s local storage. You can remove it by clearing the site’s data. The catalog works even when this storage is unavailable.')}</p><h2>${tr('Servicios externos','External services')}</h2><p>${tr('Los enlaces a Rigel Ecuador y WhatsApp, abren servicios externos sujetos a sus propias políticas. El proveedor de alojamiento puede procesar registros técnicos necesarios para servir la web. No se han integrado herramientas de publicidad ni analítica en este catálogo.','Links to Rigel Ecuador and WhatsApp open external services subject to their own policies. The hosting provider may process technical logs needed to serve the website. This catalog does not integrate advertising or analytics tools.')}</p></article>`;
   }
 
   function render() {
     document.documentElement.lang=language;
-    const titles={home:tr('Codificadoras y tintas para Colombia','Coding printers and inks for Colombia'),catalog:tr('Catálogo','Catalog'),product:selected ? text(selected.name) : tr('Producto','Product'),faq:tr('Preguntas frecuentes','FAQ'),guides:tr('Guías de codificación','Coding guides'),contact:tr('Contacto comercial','Sales contact'),privacy:tr('Privacidad','Privacy'),about:tr('Quiénes somos','About us')};
+    const titles={home:tr('Codificadoras y tintas para Colombia','Coding printers and inks for Colombia'),catalog:tr('Catálogo','Catalog'),product:selected ? text(selected.name) : tr('Producto','Product'),faq:tr('Preguntas frecuentes','FAQ'),guides:tr('Guías de codificación','Coding guides'),contact:tr('Contacto comercial','Sales contact'),privacy:tr('Privacidad','Privacy'),about:tr('Quiénes somos','About us'),careers:tr('Trabaja con nosotros','Careers')};
     document.title=`${titles[page]||titles.home} | Rigel Colombia`;
     document.querySelector('meta[name="description"]').content=tr('Catálogo Rigel Colombia: codificadoras M1 y RG1, cartuchos S70 y RCN1. Explora características, compara equipos y solicita asesoría.','Rigel Colombia catalog: M1 and RG1 coding printers, S70 and RCN1 ink cartridges. Explore features, compare printers and get advice.');
+    if (page==='careers') {
+      document.querySelector('meta[name="description"]').content=tr(
+        'Comparte tu perfil y el área en la que te gustaría trabajar con Rigel Colombia.',
+        'Share your profile and the area you would like to work in at Rigel Colombia.'
+      );
+    }
     document.querySelector('.skip-link').textContent=tr('Ir al contenido','Skip to content');
     header();
-    const views={home,catalog,product,faq,guides:guidePage,contact,about,privacy};
+    const views={home,catalog,product,faq,guides:guidePage,contact,about,careers,privacy};
     setMarkup(document.getElementById('main-content'),(views[page]||home)());
     footer();
     addFloatingWhatsApp();
@@ -365,10 +431,26 @@
       const model=products.find(p=>p.id===data.get('product'));
       const subject=tr('Consulta Colombia','Colombia inquiry')+(model?` — ${model.model}`:'');
       const body=[`${tr('Nombre','Name')}: ${data.get('name')}`,`${tr('Empresa','Company')}: ${data.get('company')}`,`${tr('Correo','Email')}: ${data.get('email')}`,`${tr('Ciudad','City')}: ${data.get('city')}`,`${tr('Producto','Product')}: ${model?text(model.name):tr('Asesoría','Advice')}`,'',data.get('message')].join('\r\n');
-      const mailto=`mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      const fallback=document.getElementById('email-fallback'); fallback.href=mailto;fallback.hidden=false;
-      document.getElementById('form-status').textContent=tr('Mensaje preparado. Si no se abrió una aplicación de correo, configura una o escribe directamente al correo indicado.','Message prepared. If an email app did not open, configure one or write directly to the address shown.');
-      location.href=mailto;
+      openPreparedEmail(subject, body);
+    });
+    document.getElementById('careers-form')?.addEventListener('submit', event=>{
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const area = careerAreas[data.get('area')];
+      if (!area) return;
+      const subject = `${tr('Postulación','Job application')} — ${text(area)}`;
+      const body = [
+        `${tr('Nombre','Name')}: ${data.get('name')}`,
+        `${tr('Correo','Email')}: ${data.get('email')}`,
+        `${tr('Teléfono','Phone')}: ${data.get('phone')}`,
+        `${tr('Ciudad','City')}: ${data.get('city')}`,
+        `${tr('Área','Area')}: ${text(area)}`,
+        '',
+        data.get('experience')
+      ].join('\r\n');
+      openPreparedEmail(subject, body);
     });
   }
 
