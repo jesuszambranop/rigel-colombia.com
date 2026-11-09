@@ -525,7 +525,7 @@ body[data-page=about] #site-footer{margin-top:0}
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(90deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.88) 33%,rgba(255,255,255,.67) 46%,transparent 62%);
+    background:linear-gradient(90deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.72) 24%,rgba(255,255,255,.48) 36%,transparent 51%);
     pointer-events:none;
   }
 }
