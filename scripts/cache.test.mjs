@@ -19,7 +19,8 @@ test('a repeated build is stable; replacing an image changes its URL and the rel
     const after=await prepare(dist);const newAssets=await getAssets();
     assert.notEqual(after,before);
     assert.notEqual(newAssets['assets/slides/banner-rg1.webp'],oldAssets['assets/slides/banner-rg1.webp']);
-    assert.equal(newAssets['assets/slides/m1-acetaminofen.png'],oldAssets['assets/slides/m1-acetaminofen.png']);
+    assert.ok(oldAssets['assets/slides/m1-acetaminofen.webp']);
+    assert.equal(newAssets['assets/slides/m1-acetaminofen.webp'],oldAssets['assets/slides/m1-acetaminofen.webp']);
     const html=await readFile(join(dist,'index.html'),'utf8');
     assert.match(html,new RegExp(`rigel-version" content="${after}`));
     assert.match(html,/js\/asset-versions\.js\?v=[a-f0-9]{16}/);

@@ -104,7 +104,7 @@
 
   const homeSlides = [
     {
-      image: 'assets/slides/m1-acetaminofen.png', kind: 'handheld',
+      image: 'assets/slides/m1-acetaminofen.webp', kind: 'handheld',
       alt: ['Codificadora M1 imprimiendo fechas y lote en una caja de acetaminofén','M1 coding printer printing dates and a batch number on an acetaminophen carton'],
       label: ['CODIFICADORA PORTÁTIL M1','M1 HANDHELD CODING PRINTER'],
       title: ['Codificadora<br>portátil M1.','M1 handheld<br>coding printer.'],
@@ -116,7 +116,7 @@
     },
     {
       image: 'assets/slides/banner-rg1.webp', kind: 'marking',
-      alt: ['Codificadora RG1 marcando fechas y lote sobre la tapa de un envase de vidrio','RG1 coding printer marking dates and a batch number on a glass container lid'],
+      alt: ['Codificadora RG1 junto a una banda de producción de frascos con tapas marcadas','RG1 coding printer beside a conveyor carrying jars with marked lids'],
       label: ['RG1 · MARCAJE Y CODIFICACIÓN','RG1 · MARKING & CODING'],
       title: ['RG1: marcaje y<br>codificación.','RG1: marking<br>and coding.'],
       description: ['Imprime fechas, lotes y códigos en tapas y envases con la RG1 y su cartucho RCN1.','Print dates, batches and codes on lids and containers with the RG1 and its RCN1 cartridge.'],
@@ -126,7 +126,7 @@
       caption: ['RG1 + cartucho RCN1','RG1 + RCN1 cartridge']
     },
     {
-      image: 'assets/slides/productos-despensa.png', kind: 'packaging',
+      image: 'assets/slides/productos-despensa.webp', kind: 'packaging',
       alt: ['Arroz, aceite, harina, lentejas y pasta con fechas y lotes impresos','Rice, oil, flour, lentils and pasta with printed dates and batch numbers'],
       label: ['TU PRODUCTO. TU APLICACIÓN.','YOUR PRODUCT. YOUR APPLICATION.'],
       title: ['Identifica<br>tus envases.','Identify<br>your packaging.'],
@@ -377,10 +377,16 @@
               </select>
             </label>
             <label>${tr('Cuéntanos sobre tu experiencia','Tell us about your experience')} *<textarea name="experience" rows="4" required maxlength="1000"></textarea></label>
+            <label class="resume-field">
+              ${tr('Adjuntar hoja de vida (opcional)','Attach your résumé (optional)')}
+              <input name="resume" type="file" accept=".pdf,.doc,.docx" aria-describedby="resume-help">
+              <small id="resume-help">${tr('PDF, DOC o DOCX de hasta 5 MB.','PDF, DOC or DOCX up to 5 MB.')}</small>
+            </label>
             <label class="check-label"><input type="checkbox" required><span>${tr('He leído la','I have read the')} <a href="${url('privacidad.html')}">${tr('información de privacidad','privacy information')}</a> ${tr('y deseo compartir mi postulación con Rigel.','and wish to share my application with Rigel.')} *</span></label>
             <button class="button primary" type="submit">${tr('Preparar postulación','Prepare application')}${arrow}</button>
-            <p class="form-note">${tr('Se abrirá tu aplicación de correo para que revises y envíes la postulación a','Your email app will open so you can review and send the application to')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>.</p>
+            <p class="form-note">${tr('Revisa y envía tu postulación a','Review and send your application to')} <a href="mailto:${esc(config.email)}">${esc(config.email)}</a>. ${tr('Si seleccionas una hoja de vida, podrás descargar un borrador de correo con el archivo adjunto.','If you select a résumé, you can download an email draft with the file attached.')}</p>
             <p id="form-status" role="status"></p>
+            <a id="resume-draft" class="button outline" download="postulacion-rigel.eml" hidden>${tr('Descargar correo con adjunto','Download email with attachment')}</a>
             <a id="email-fallback" class="text-link" hidden>${tr('Abrir correo de nuevo','Open email again')}${arrow}</a>
           </form>
         </div>
@@ -397,6 +403,48 @@
       'Message prepared. If an email app did not open, configure one or write directly to the address shown.'
     );
     location.href = mailto;
+  }
+
+  const resumeTypes = {
+    pdf: 'application/pdf',
+    doc: 'application/msword',
+    docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  };
+
+  function base64(bytes) {
+    let binary = '';
+    for (let offset=0; offset<bytes.length; offset+=32768) {
+      binary += String.fromCharCode(...bytes.subarray(offset,offset+32768));
+    }
+    return btoa(binary);
+  }
+
+  async function resumeDraft(subject, body, file, extension) {
+    const encodeText = value => base64(new TextEncoder().encode(value));
+    const wrap = value => value.match(/.{1,76}/g)?.join('\r\n') ?? '';
+    const boundary = 'rigel-application-boundary';
+    const filename = `hoja-de-vida.${extension}`;
+    return new Blob([[
+      'X-Unsent: 1',
+      `To: ${config.email}`,
+      `Subject: =?UTF-8?B?${encodeText(subject)}?=`,
+      'MIME-Version: 1.0',
+      `Content-Type: multipart/mixed; boundary="${boundary}"`,
+      '',
+      `--${boundary}`,
+      'Content-Type: text/plain; charset=UTF-8',
+      'Content-Transfer-Encoding: base64',
+      '',
+      wrap(encodeText(body)),
+      `--${boundary}`,
+      `Content-Type: ${resumeTypes[extension]}`,
+      `Content-Disposition: attachment; filename="${filename}"`,
+      'Content-Transfer-Encoding: base64',
+      '',
+      wrap(base64(new Uint8Array(await file.arrayBuffer()))),
+      `--${boundary}--`,
+      ''
+    ].join('\r\n')],{type:'message/rfc822'});
   }
 
   function privacy() {
@@ -433,10 +481,38 @@
       const body=[`${tr('Nombre','Name')}: ${data.get('name')}`,`${tr('Empresa','Company')}: ${data.get('company')}`,`${tr('Correo','Email')}: ${data.get('email')}`,`${tr('Ciudad','City')}: ${data.get('city')}`,`${tr('Producto','Product')}: ${model?text(model.name):tr('Asesoría','Advice')}`,'',data.get('message')].join('\r\n');
       openPreparedEmail(subject, body);
     });
-    document.getElementById('careers-form')?.addEventListener('submit', event=>{
+    const careersForm = document.getElementById('careers-form');
+    if (careersForm) initCareersForm(careersForm);
+  }
+
+  function initCareersForm(form) {
+    const input = form.querySelector('[name=resume]');
+    const draft = form.querySelector('#resume-draft');
+    const fallback = form.querySelector('#email-fallback');
+    const status = form.querySelector('#form-status');
+    let revision = 0;
+    function clearDraft() {
+      revision++;
+      if (draft.hasAttribute('href')) URL.revokeObjectURL(draft.href);
+      draft.removeAttribute('href');
+      draft.hidden = fallback.hidden = true;
+      fallback.textContent = tr('Abrir correo de nuevo','Open email again');
+      status.textContent = '';
+    }
+    form.addEventListener('input',clearDraft);
+    input.addEventListener('change',()=>input.setCustomValidity(''));
+    form.addEventListener('submit', async event=>{
       event.preventDefault();
-      const form = event.currentTarget;
       if (!form.reportValidity()) return;
+      clearDraft();
+      const submittedRevision = revision;
+      const file = input.files?.[0];
+      const extension = file?.name.match(/\.([a-z]+)$/i)?.[1].toLowerCase();
+      if (file && (!Object.hasOwn(resumeTypes,extension) || file.size===0 || file.size>5*1024*1024)) {
+        input.setCustomValidity(tr('Selecciona un PDF, DOC o DOCX válido de hasta 5 MB.','Select a valid PDF, DOC or DOCX up to 5 MB.'));
+        input.reportValidity();
+        return;
+      }
       const data = new FormData(form);
       const area = careerAreas[data.get('area')];
       if (!area) return;
@@ -450,7 +526,25 @@
         '',
         data.get('experience')
       ].join('\r\n');
-      openPreparedEmail(subject, body);
+      if (!file) {
+        openPreparedEmail(subject, body);
+        return;
+      }
+      const manualBody = body + '\r\n\r\n' + tr('Hoja de vida adjunta.','Résumé attached.');
+      fallback.href = `mailto:${config.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(manualBody)}`;
+      fallback.textContent = tr('Abrir correo para adjuntar el archivo manualmente','Open email to attach the file manually');
+      fallback.hidden = false;
+      try {
+        const message = await resumeDraft(subject, manualBody, file, extension);
+        if (submittedRevision!==revision) return;
+        draft.href = URL.createObjectURL(message);
+        draft.hidden = false;
+        status.textContent = tr('Descarga el borrador y ábrelo en una aplicación de correo compatible para revisarlo y enviarlo.','Download the draft and open it in a compatible email app to review and send it.');
+      } catch {
+        if (submittedRevision===revision) {
+          status.textContent = tr('No se pudo preparar el adjunto. Abre el correo y adjunta la hoja de vida manualmente.','The attachment could not be prepared. Open the email and attach your résumé manually.');
+        }
+      }
     });
   }
 
