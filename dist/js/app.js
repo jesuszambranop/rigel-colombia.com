@@ -35,8 +35,8 @@
   let catalogType = ['printer','ink'].includes(params.get('tipo')) ? params.get('tipo') : 'all';
   let catalogSearch = '';
 
-  function whatsappLink(label,cls='whatsapp-cta',number=config.whatsapp) {
-    return `<a class="${cls}" href="https://wa.me/${esc(number)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(label)} · WhatsApp"><img src="assets/social/whatsapp.svg" alt="" width="22" height="24"><span>${esc(label)}</span></a>`;
+  function whatsappLink(label,cls='whatsapp-cta',number=config.whatsapp,icon='whatsapp.svg') {
+    return `<a class="${cls}" href="https://wa.me/${esc(number)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(label)} · WhatsApp"><img src="assets/social/${icon}" alt="" width="22" height="24"><span>${esc(label)}</span></a>`;
   }
 
   function addFloatingWhatsApp() {
@@ -59,7 +59,7 @@
 
   function countryContacts() {
     const locations=window.RIGEL_LOCATIONS||[];
-    return `<section class="international-presence country-directory"><div class="container"><h2>${tr('Países y contactos','Countries and contacts')}</h2><p class="country-directory-intro">${tr('Encuentra los datos de Rigel en cada país.','Find Rigel’s contact details in each country.')}</p><div class="country-contact-grid">${locations.map(location=>`<article class="country-contact-card" data-country="${location.id}"><header><div><h3>${text(location.name)}</h3>${location.id==='colombia'?`<p>${tr('Atención comercial','Sales inquiries')}</p>`:''}</div><img class="country-card-map" src="assets/paises/${location.id}-halftone.svg" alt="" width="95" height="110" loading="lazy"></header><div class="country-contact-body">${location.offices?`<div class="country-offices">${location.offices.map(office=>`<div class="country-office"><h4>${office.name}</h4>${phoneLink(office.phone)}<p>${text(office.address)}</p></div>`).join('')}</div>`:`${phoneLink(location.phone)}${location.additionalPhone?`<p class="additional-phone">${tr('Atención adicional','Additional contact')}: ${phoneLink(location.additionalPhone,'')}</p>`:''}${location.address?`<p class="country-address">${text(location.address)}</p>`:''}`}${location.email?`<a class="country-email" href="mailto:${esc(location.email)}">${esc(location.email)}</a>`:''}<p class="country-hours"><strong>${tr('Horario','Hours')}</strong>${tr('Lunes a viernes, 08:30–17:30. Sábados, 08:30–13:00.','Monday to Friday, 08:30–17:30. Saturday, 08:30–13:00.')}</p>${location.website?`<a class="country-website" href="${esc(location.website)}" target="_blank" rel="noopener noreferrer">${esc(new URL(location.website).hostname)}</a>`:''}</div><div class="country-card-actions">${location.offices?location.offices.map(office=>whatsappLink(office.name,'whatsapp-cta country-whatsapp',office.whatsapp)).join(''):whatsappLink('WhatsApp','whatsapp-cta country-whatsapp',location.whatsapp)}</div></article>`).join('')}</div></div></section>`;
+    return `<section class="international-presence country-directory"><div class="container"><h2>${tr('Países y contactos','Countries and contacts')}</h2><p class="country-directory-intro">${tr('Encuentra los datos de Rigel en cada país.','Find Rigel’s contact details in each country.')}</p><div class="country-contact-grid">${locations.map(location=>`<article class="country-contact-card" data-country="${location.id}"><header><div><h3>${text(location.name)}</h3>${location.id==='colombia'?`<p>${tr('Atención comercial','Sales inquiries')}</p>`:''}</div><img class="country-card-map" src="assets/paises/${location.id}-halftone.svg" alt="" width="95" height="110" loading="lazy"></header><div class="country-contact-body">${location.offices?`<div class="country-offices">${location.offices.map(office=>`<div class="country-office"><h4>${office.name}</h4>${phoneLink(office.phone)}<p>${text(office.address)}</p></div>`).join('')}</div>`:`${phoneLink(location.phone)}${location.additionalPhone?`<p class="additional-phone">${tr('Atención adicional','Additional contact')}: ${phoneLink(location.additionalPhone,'')}</p>`:''}${location.address?`<p class="country-address">${text(location.address)}</p>`:''}`}${location.email?`<a class="country-email" href="mailto:${esc(location.email)}">${esc(location.email)}</a>`:''}<p class="country-hours"><strong>${tr('Horario','Hours')}</strong>${tr('Lunes a viernes, 08:30–17:30. Sábados, 08:30–13:00.','Monday to Friday, 08:30–17:30. Saturday, 08:30–13:00.')}</p>${location.website?`<a class="country-website" href="${esc(location.website)}" target="_blank" rel="noopener noreferrer">${esc(new URL(location.website).hostname)}</a>`:''}</div><div class="country-card-actions">${location.offices?location.offices.map(office=>whatsappLink(office.name,'country-whatsapp',office.whatsapp,'whatsapp-green.svg')).join(''):whatsappLink('WhatsApp','country-whatsapp',location.whatsapp,'whatsapp-green.svg')}</div></article>`).join('')}</div></div></section>`;
   }
 
   function header() {
@@ -358,7 +358,7 @@
             <p class="eyebrow">RIGEL COLOMBIA</p>
             <h1>${title}</h1>
             <p class="international-lead">${tr('Comparte tu perfil con nuestro equipo.','Share your profile with our team.')}</p>
-            <p>${tr('Somos una empresa internacional dedicada al marcaje y la codificación. Cuéntanos sobre tu experiencia y el área en la que te gustaría trabajar.','We are an international company specializing in marking and coding. Tell us about your experience and the area you would like to work in.')}</p>
+            <p>${tr('Somos una empresa internacional dedicada al marcaje y la codificación. Envíanos tu hoja de vida e indícanos el área en la que te gustaría trabajar.','We are an international company specializing in marking and coding. Send us your résumé and tell us which area you would like to work in.')}</p>
             <a class="text-link" href="${url('quienes-somos.html')}">${tr('Conoce más sobre Rigel','More about Rigel')}</a>
           </div>
           <form id="careers-form" class="contact-form careers-form">
@@ -376,7 +376,6 @@
                 ${Object.entries(careerAreas).map(([key,label])=>`<option value="${key}">${text(label)}</option>`).join('')}
               </select>
             </label>
-            <label>${tr('Cuéntanos sobre tu experiencia','Tell us about your experience')} *<textarea name="experience" rows="4" required maxlength="1000"></textarea></label>
             <label class="resume-field">
               ${tr('Adjuntar hoja de vida (opcional)','Attach your résumé (optional)')}
               <input name="resume" type="file" accept=".pdf,.doc,.docx" aria-describedby="resume-help">
@@ -522,9 +521,7 @@
         `${tr('Correo','Email')}: ${data.get('email')}`,
         `${tr('Teléfono','Phone')}: ${data.get('phone')}`,
         `${tr('Ciudad','City')}: ${data.get('city')}`,
-        `${tr('Área','Area')}: ${text(area)}`,
-        '',
-        data.get('experience')
+        `${tr('Área','Area')}: ${text(area)}`
       ].join('\r\n');
       if (!file) {
         openPreparedEmail(subject, body);
