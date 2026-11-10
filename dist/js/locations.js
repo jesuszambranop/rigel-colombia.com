@@ -2,7 +2,11 @@
 // Colombia's email and WhatsApp are the details confirmed by the site owner.
 window.RIGEL_LOCATIONS = [
   {
-    id:'colombia',name:['Colombia','Colombia'],phone:'+57 310 812 3039',whatsapp:'573108123039',email:'colombia@rigelsa.com',
+    id:'colombia',name:['Colombia','Colombia'],phone:'+57 310 812 3039',email:'colombia@rigelsa.com',
+    whatsappContacts:[
+      {name:'Bogotá',whatsapp:'573212664907'},
+      {name:'Barranquilla',whatsapp:'573108123039'}
+    ],
     address:['Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.','Calle 65 transversal 1G-10, Villa Linda, Barranquilla, Atlántico.']
   },
   {
@@ -13,16 +17,16 @@ window.RIGEL_LOCATIONS = [
     ]
   },
   {
-    id:'brasil',name:['Brasil','Brazil'],phone:'+55 62 99203 7992',whatsapp:'5562992037992',email:'info@rigelsa.com.br',website:'https://rigelsa.com.br/',
+    id:'brasil',name:['Brasil','Brazil'],city:'Goiânia',phone:'+55 62 99203 7992',whatsapp:'5562992037992',email:'info@rigelsa.com.br',website:'https://rigelsa.com.br/',
     address:['Av. Milão 1645, Galería Paisiello, sala 8.','Av. Milão 1645, Paisiello Gallery, room 8.']
   },
   {
-    id:'mexico',name:['México','Mexico'],phone:'+52 999 635 1998',whatsapp:'529996351998',additionalPhone:'+52 999 106 1004',email:'ventasmexico@rigelsa.com',website:'https://rigel-mexico.com/',
+    id:'mexico',name:['México','Mexico'],city:'Mérida',phone:'+52 999 635 1998',whatsapp:'529996351998',additionalPhone:'+52 999 106 1004',email:'ventasmexico@rigelsa.com',website:'https://rigel-mexico.com/',
     address:['Calle 62 diagonal, número 256, colonia Jacinto Canek, Mérida, Yucatán, C.P. 97227.','Calle 62 diagonal, no. 256, Colonia Jacinto Canek, Mérida, Yucatán, C.P. 97227.']
   },
   {
-    id:'venezuela',name:['Venezuela','Venezuela'],phone:'+58 424 969 9579',whatsapp:'584249699579',
+    id:'venezuela',name:['Venezuela','Venezuela'],city:'Ciudad Bolívar',phone:'+58 424 969 9579',whatsapp:'584249699579',
     address:['Paseo Meneses, C.C. Plaza Real, planta baja, local N.º 11, Ciudad Bolívar, Estado Bolívar.','Paseo Meneses, Plaza Real Shopping Center, ground floor, unit No. 11, Ciudad Bolívar, Bolívar State.']
   },
-  {id:'chile',name:['Chile','Chile'],phone:'+56 9 5158 6530',whatsapp:'56951586530'}
+  {id:'chile',name:['Chile','Chile'],city:'Santiago',phone:'+56 9 5158 6530',whatsapp:'56951586530'}
 ];
