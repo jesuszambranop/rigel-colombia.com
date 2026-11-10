@@ -38,15 +38,13 @@ h1,h2,h3{font-family:Poppins,Arial,sans-serif;font-weight:700;letter-spacing:-.0
 /* Photos and copy, with small functional slideshow controls. */
 .home-carousel{background:#f3f4f5}
 .slide-stage{position:relative}
-.home-slide{position:relative}
+.home-slide{position:relative;background:#1f2428}
 .slide-image{display:block;width:100%;height:auto;aspect-ratio:1910/823;object-fit:contain}
 .slide-layout{position:absolute;inset:0;height:100%;display:flex;align-items:center}
 .slide-copy{width:520px;max-width:49%;padding-bottom:10px}
-.slide-copy h2{font-size:52px;line-height:1.17;margin-bottom:24px;color:#26343d;font-weight:700;letter-spacing:-.025em}
-.slide-description{font-size:15px;color:#53636e;line-height:1.85;max-width:390px;margin-bottom:27px}
+.slide-copy h2{font-size:52px;line-height:1.17;margin-bottom:24px;color:#fff;font-weight:700;letter-spacing:-.025em}
+.slide-description{font-size:15px;color:#fff;line-height:1.85;max-width:390px;margin-bottom:27px}
 .slide-cta{padding:12px 23px;min-height:45px;font-size:13px}
-.slide--marking,.slide--handheld{background:#dce1e9}
-.slide--packaging{background:#e5e5e5}
 .slide--handheld .slide-image{width:100%;object-position:center}
 .slide--handheld .slide-copy{max-width:44%}
 .slide--packaging .slide-copy h2{font-size:49px}
@@ -525,9 +523,10 @@ body[data-page=about] #site-footer{margin-top:0}
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(90deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.72) 24%,rgba(255,255,255,.48) 36%,transparent 51%);
+    background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.72) 24%,rgba(0,0,0,.48) 36%,transparent 51%);
     pointer-events:none;
   }
+  .slide-copy h2,.slide-description{text-shadow:0 1px 3px rgba(0,0,0,.72)}
 }
 @media(max-width:1100px){
   .home-slide:not([hidden]){display:flex;flex-direction:column}
